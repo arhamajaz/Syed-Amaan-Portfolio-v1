@@ -1,0 +1,73 @@
+import type { Config } from "tailwindcss";
+
+const config: Config = {
+  content: [
+    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        "primary-fixed": "#ffe088",
+        "on-tertiary-fixed-variant": "#27438a",
+        "on-primary-fixed": "#241a00",
+        "on-background": "#e5e2e1",
+        "surface-container-high": "#1c1c1c",
+        "inverse-primary": "#FFFFFF",
+        "outline-variant": "#2a2a2a",
+        "on-primary": "#000000",
+        "on-tertiary-container": "#FFFFFF",
+        "on-error": "#FF0000",
+        "secondary-fixed": "#FFFFFF",
+        "outline": "#4d4d4d",
+        "on-primary-container": "#FFFFFF",
+        "inverse-on-surface": "#131313",
+        "surface-container-highest": "#242424",
+        "tertiary-fixed-dim": "#FFFFFF",
+        "on-tertiary": "#FFFFFF",
+        "surface-tint": "#FFFFFF",
+        "surface-bright": "#1a1a1a",
+        "surface-container": "#131313",
+        "secondary-container": "#1a1a1a",
+        "tertiary-fixed": "#FFFFFF",
+        "primary": "#e5e2e1",
+        "secondary-fixed-dim": "#FFFFFF",
+        "on-error-container": "#FFFFFF",
+        "primary-container": "#333333",
+        "on-secondary-fixed-variant": "#FFFFFF",
+        "background": "#131313",
+        "tertiary-container": "#333333",
+        "surface-dim": "#131313",
+        "surface": "#131313",
+        "surface-container-lowest": "#0a0a0a",
+        "error": "#FF0000",
+        "surface-variant": "#1c1c1c",
+        "tertiary": "#FFFFFF",
+        "on-secondary-container": "#FFFFFF",
+        "surface-container-low": "#111111",
+        "on-surface": "#e5e2e1",
+        "on-secondary-fixed": "#FFFFFF",
+        "secondary": "#FFFFFF",
+        "on-secondary": "#000000",
+        "primary-fixed-dim": "#FFFFFF",
+        "error-container": "#FF0000",
+        "on-tertiary-fixed": "#000000",
+        "on-surface-variant": "#b0b0b0",
+        "inverse-surface": "#e5e2e1",
+        "on-primary-fixed-variant": "#000000"
+      },
+      fontFamily: {
+        headline: ["var(--font-noto-serif)", "serif"],
+        body: ["var(--font-inter)", "sans-serif"],
+        label: ["var(--font-inter)", "sans-serif"],
+      },
+    },
+  },
+  plugins: [
+    require("@tailwindcss/forms"),
+    require("@tailwindcss/container-queries")
+  ],
+};
+export default config;
