@@ -239,15 +239,14 @@ export default function PortfolioPage() {
                 <div className="space-y-8">
                   {[
                     { label: 'Data Visualization (Power BI)', pct: 90 },
-                    { label: 'Advanced Excel & SQL', pct: 85 },
+                    { label: 'Advanced Excel & Basic Tableau', pct: 85 },
                     { label: 'Python for Analysis', pct: 70 },
                   ].map(({ label, pct }) => (
                     <div key={label}>
-                      <div className="flex justify-between mb-4">
+                      <div className="flex mb-4">
                         <span className="font-[--font-inter] text-xs tracking-widest uppercase text-white/50">
                           {label}
                         </span>
-                        <span className="text-[#f2ca50] font-semibold">{pct}%</span>
                       </div>
                       <div className="h-1 bg-white/5 rounded-full overflow-hidden">
                         <motion.div
@@ -385,7 +384,7 @@ export default function PortfolioPage() {
                 {[
                   { period: '2024 - Present', role: 'Marketing Intern', org: 'DNP Health Seva Pvt. Ltd.', desc: 'Leading digital initiatives and coordinating patient outreach programs with strategic focus.', align: 'right' as const, delay: 0.3 },
                   { period: '2024', role: 'Internship', org: 'Unschool', desc: 'Assisted in market research and operational streamlining for emerging educational platforms.', align: 'left' as const, delay: 0.6 },
-                  { period: '2023 - 2026', role: 'BBA (Analytics Focus)', org: "St. Xavier's College", desc: 'Developing expertise in business administration with a specialized concentration in data-driven management.', align: 'right' as const, delay: 0.9 },
+                  { period: '2023 - 2026', role: 'BBA', org: "St. Xavier's College", desc: 'Developing expertise in business administration with a specialized concentration in data-driven management.', align: 'right' as const, delay: 0.9 },
                 ].map(({ period, role, org, desc, align, delay }) => (
                   <div key={role} className="relative flex flex-col md:flex-row items-center md:justify-between w-full group">
                     {/* Dot with pulse */}
@@ -512,20 +511,7 @@ export default function PortfolioPage() {
               </div>
             </motion.div>
             <motion.div className="glass-card p-12 rounded-xl" {...fadeInUp}>
-              <form className="space-y-10">
-                {[
-                  { label: 'Identity', placeholder: 'YOUR FULL NAME', type: 'text' },
-                  { label: 'Email Address', placeholder: 'YOUR@EMAIL.COM', type: 'email' },
-                ].map(({ label, placeholder, type }) => (
-                  <div key={label} className="group relative">
-                    <label className="font-[--font-inter] text-xs tracking-widest text-[#f2ca50] uppercase block mb-4">{label}</label>
-                    <input className="w-full bg-transparent border-0 border-b border-white/10 py-4 px-0 focus:ring-0 focus:border-white transition-colors text-white placeholder:text-white/10 outline-none" placeholder={placeholder} type={type} />
-                  </div>
-                ))}
-                <div className="group relative">
-                  <label className="font-[--font-inter] text-xs tracking-widest text-[#f2ca50] uppercase block mb-4">Brief Narrative</label>
-                  <textarea className="w-full bg-transparent border-0 border-b border-white/10 py-4 px-0 focus:ring-0 focus:border-white transition-colors text-white placeholder:text-white/10 resize-none outline-none" placeholder="HOW CAN I ASSIST YOUR VISION?" rows={4} />
-                </div>
+              <div className="space-y-10">
                 <a 
                   href="https://docs.google.com/forms/d/e/1FAIpQLSc4gYl7oTWiN-Wdowt550TJnL4q7gwTI4x-KawzfhPS3hZtlw/viewform" 
                   target="_blank" 
@@ -534,7 +520,7 @@ export default function PortfolioPage() {
                 >
                   Initialize Connection
                 </a>
-              </form>
+              </div>
             </motion.div>
           </div>
         </section>
