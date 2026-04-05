@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import { motion, HTMLMotionProps, Variants } from 'framer-motion';
 import { EtherealShadow } from '@/components/ui/etheral-shadow';
+import { VisitorCounter } from '@/components/ui/visitor-counter';
 
 const fadeInUp: HTMLMotionProps<"div"> = {
   initial: { opacity: 0, y: 30 },
@@ -542,6 +543,7 @@ export default function PortfolioPage() {
         </div>
         <div className="mt-8 text-center">
           <p className="font-[--font-noto-serif] text-lg text-white/10 tracking-[0.4em] uppercase">Thank you for visiting!</p>
+          <VisitorCounter />
         </div>
       </footer>
     </main>
