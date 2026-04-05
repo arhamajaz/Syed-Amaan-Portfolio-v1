@@ -28,3 +28,8 @@ next-temp/
 # OS Files
 .DS_Store
 Thumbs.db
+
+# Environment Configs
+.env
+.env.local
+.env.*
