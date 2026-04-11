@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { motion, HTMLMotionProps, Variants } from 'framer-motion';
 import { EtherealShadow } from '@/components/ui/etheral-shadow';
 import { VisitorCounter } from '@/components/ui/visitor-counter';
+import { GlassCard } from '@/components/ui/glass-card';
 
 const fadeInUp: HTMLMotionProps<"div"> = {
   initial: { opacity: 0, y: 30 },
@@ -67,10 +68,11 @@ export default function PortfolioPage() {
               <motion.a
                 key={href}
                 variants={staggerItem}
-                className="nav-link font-[--font-noto-serif] text-[0.85rem] tracking-[0.2em] uppercase text-[#e5e2e1]/50 hover:text-white transition-all duration-500 relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[1px] after:bg-white after:transition-all hover:after:w-full whitespace-nowrap"
+                className="nav-link font-[--font-noto-serif] text-[0.85rem] tracking-[0.2em] uppercase text-[#e5e2e1]/50 hover:text-white transition-all duration-500 relative whitespace-nowrap group block"
                 href={href}
               >
                 {label}
+                <span className="absolute -bottom-1 left-0 h-[1px] w-0 bg-white transition-all duration-300 ease-out group-hover:w-full" />
               </motion.a>
             ))}
           </motion.div>
@@ -279,14 +281,15 @@ export default function PortfolioPage() {
                     { icon: 'groups', title: 'Collaboration', desc: 'Forging synergies across diverse multidisciplinary teams.' },
                     { icon: 'insights', title: 'Problem Solving', desc: 'Deciphering challenges through analytical lenses.' },
                   ].map(({ icon, title, desc }) => (
-                    <motion.div
-                      key={title}
-                      variants={staggerItem}
-                      className="p-6 bg-white/[0.02] rounded-xl border border-white/5 hover:border-white/20 transition-all group"
-                    >
-                      <span className="material-symbols-outlined text-[#f2ca50] mb-4 block text-3xl">{icon}</span>
-                      <h4 className="font-[--font-inter] font-bold text-white mb-2">{title}</h4>
-                      <p className="font-[--font-inter] text-xs text-white/30">{desc}</p>
+                    <motion.div key={title} variants={staggerItem}>
+                      <GlassCard 
+                        glowColor="#4ADBC8" 
+                        className="p-8 group h-full"
+                      >
+                        <span className="material-symbols-outlined text-[#4ADBC8] mb-4 block text-4xl group-hover:scale-110 transition-transform duration-500">{icon}</span>
+                        <h4 className="font-[--font-inter] font-black text-2xl text-white mb-3">{title}</h4>
+                        <p className="font-[--font-inter] text-base font-semibold text-white/60">{desc}</p>
+                      </GlassCard>
                     </motion.div>
                   ))}
                 </motion.div>
@@ -317,40 +320,51 @@ export default function PortfolioPage() {
                 { src: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBT2slcRvcvmXDYLVaqKStnjejw-OfCbH7-Nqh275_oAJW1iqyzXzTOXiy_LKL86YiTNZu7TQTa9dNMpEuhUVoXGYk4YRo8FD38ABqpFCa9aWntSpvoSzxM-uLD8DJ5rDCHHMsLoE5GAKyTjshTqu7ea3_XlddkJzkoAy36rX9WauwvQoJwRROIB5SvjU7j6OKnXCE82RMBMQu-UPKkDsl4fYP8cD1GlNH4mQHb-CfkXM7d_3D7kmnbEAv4cpUPgjox5arsSnB_04f6', tag: 'Power BI Dashboard • Patna', title: 'Influence of Social Media on Pre-Purchase Clothing Behavior of Young Adults', desc: 'Mapping the digital footprint of young adults in Patna — how social media shapes clothing purchase decisions from awareness to conversion.' },
                 { src: '/image.png', tag: 'Excel • Sep 2025', title: 'Sales Analysis of Coca-Cola', desc: 'Interactive sales dashboard in Excel analyzing revenue by region, product & city with KPIs, trend lines, and comparative charts. Associated with St. Xavier\'s College of Management & Technology.' },
               ].map(({ src, tag, title, desc }) => (
-
-                <motion.a 
-                  key={title} 
-                  href="https://www.linkedin.com/in/syed-amaan-san/details/projects/" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  variants={staggerItem} 
-                  className="block group relative aspect-[3/4] bg-white/[0.03] rounded-xl overflow-hidden cursor-pointer interactive-card"
-                >
-                  <Image 
-                    src={src} 
-                    alt={title} 
-                    fill 
-                    className="object-cover grayscale opacity-40 group-hover:grayscale-0 group-hover:scale-110 group-hover:opacity-60 transition-all duration-700" 
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80" />
-                  <div className="absolute bottom-0 left-0 p-10 translate-y-12 group-hover:translate-y-0 transition-transform duration-700 ease-out">
-                    <span className="font-[--font-inter] text-[0.65rem] tracking-[0.3em] text-[#f2ca50] uppercase mb-2 block">{tag}</span>
-                    <h3 className="font-[--font-noto-serif] text-xl text-white mb-4">{title}</h3>
-                    <p className="font-[--font-inter] text-sm text-white/40 opacity-0 group-hover:opacity-100 transition-all duration-700 delay-200">{desc}</p>
-                  </div>
-                  <div className="absolute top-8 right-8 w-12 h-12 rounded-full border border-white/20 flex items-center justify-center opacity-0 group-hover:opacity-100 group-hover:bg-white transition-all duration-700">
-                    <span className="material-symbols-outlined text-white group-hover:text-black">north_east</span>
-                  </div>
-                </motion.a>
+                <motion.div key={title} variants={staggerItem}>
+                  <GlassCard className="group relative aspect-[3/4] cursor-pointer">
+                    <a 
+                      href="https://www.linkedin.com/in/syed-amaan-san/details/projects/" 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="block w-full h-full"
+                    >
+                      <Image 
+                        src={src} 
+                        alt={title} 
+                        fill 
+                        className="object-cover grayscale opacity-40 group-hover:grayscale-0 group-hover:scale-110 group-hover:opacity-60 transition-all duration-700" 
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80" />
+                      <div className="absolute bottom-0 left-0 p-10 translate-y-12 group-hover:translate-y-0 transition-transform duration-700 ease-out">
+                        <span className="font-[--font-inter] text-[0.65rem] tracking-[0.3em] text-[#f2ca50] uppercase mb-2 block">{tag}</span>
+                        <h3 className="font-[--font-noto-serif] text-xl text-white mb-4">{title}</h3>
+                        <p className="font-[--font-inter] text-sm text-white/40 opacity-0 group-hover:opacity-100 transition-all duration-700 delay-200">{desc}</p>
+                      </div>
+                      <div className="absolute top-8 right-8 w-12 h-12 rounded-full border border-white/20 flex items-center justify-center opacity-0 group-hover:opacity-100 group-hover:bg-white transition-all duration-700">
+                        <span className="material-symbols-outlined text-white group-hover:text-black">north_east</span>
+                      </div>
+                    </a>
+                  </GlassCard>
+                </motion.div>
               ))}
             </motion.div>
           </div>
         </section>
 
         {/* --- TIMELINE SECTION --- */}
-        <section className="py-32 px-10" id="timeline">
-          <div className="max-w-[1000px] mx-auto">
+        <section className="relative py-32 px-10 overflow-hidden" id="timeline">
+          <div className="absolute inset-0 z-0">
+            <Image
+              src="/bg-timeline.jpeg"
+              alt="Cinematic Progression Background"
+              fill
+              className="object-cover opacity-20"
+              sizes="100vw"
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-[#131313] md:via-[#131313]/60 via-[#131313]/80 to-[#131313]" />
+          </div>
+          <div className="relative z-10 max-w-[1000px] mx-auto">
             <motion.div className="text-center mb-24" {...fadeInUp}>
               <span className="font-[--font-inter] text-sm tracking-[0.3em] text-[#f2ca50] uppercase block mb-4">Career Trajectory</span>
               <h2 className="font-[--font-noto-serif] text-4xl font-bold text-white">A Cinematic Progression</h2>
@@ -370,14 +384,14 @@ export default function PortfolioPage() {
 
               {/* ── Start Marker ── */}
               <motion.div
-                className="absolute left-[10px] md:left-1/2 md:-ml-[10px] -top-2 flex flex-col items-center z-20"
+                className="absolute left-[19px] md:left-1/2 -translate-x-1/2 -top-6 flex flex-col items-center z-20"
                 initial={{ opacity: 0, scale: 0 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
                 viewport={{ once: true }}
               >
                 <div className="w-5 h-5 rounded-full bg-[#f2ca50] shadow-[0_0_15px_rgba(242,202,80,0.6)]" />
-                <span className="font-[--font-inter] text-[0.6rem] tracking-[0.3em] text-[#f2ca50]/60 uppercase mt-2 whitespace-nowrap">Journey Begins</span>
+                <span className="font-[--font-inter] text-sm tracking-[0.3em] text-[#f2ca50] uppercase mt-2 whitespace-nowrap font-semibold">Journey Begins</span>
               </motion.div>
 
               {/* ── Timeline Entries ── */}
@@ -430,14 +444,14 @@ export default function PortfolioPage() {
 
               {/* ── End Marker ── */}
               <motion.div
-                className="absolute left-[10px] md:left-1/2 md:-ml-[10px] -bottom-2 flex flex-col items-center z-20"
+                className="absolute left-[19px] md:left-1/2 -translate-x-1/2 -bottom-6 flex flex-col items-center z-20"
                 initial={{ opacity: 0, scale: 0 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6, delay: 1.4 }}
                 viewport={{ once: true }}
               >
                 <div className="w-5 h-5 rounded-full bg-[#f2ca50] shadow-[0_0_15px_rgba(242,202,80,0.6)]" />
-                <span className="font-[--font-inter] text-[0.6rem] tracking-[0.3em] text-[#f2ca50]/60 uppercase mt-2 whitespace-nowrap">Present Day</span>
+                <span className="font-[--font-inter] text-sm tracking-[0.3em] text-[#f2ca50] uppercase mt-2 whitespace-nowrap font-semibold">Present Day</span>
               </motion.div>
             </div>
           </div>
@@ -458,27 +472,29 @@ export default function PortfolioPage() {
               viewport={{ once: true }}
             >
               {[
-                { icon: 'workspace_premium', name: 'TCS iON Career Edge', cert: 'Young Professional', issuer: 'TCS iON • Mar 2026', skills: 'Communication · AI · Strategic Thinking' },
-                { icon: 'school', name: 'IIM Bangalore (SWAYAM)', cert: 'Strategic Management', issuer: 'IIMB • Jan 2026', skills: 'Strategic Planning · Data Analysis' },
-                { icon: 'analytics', name: 'Deloitte Australia', cert: 'Data Analytics Job Simulation', issuer: 'Forage • Oct 2025', skills: 'Data Analysis · Data Visualization' },
-                { icon: 'monitoring', name: 'Tata Group', cert: 'Data Visualisation: Empowering Business', issuer: 'Forage • Oct 2025', skills: 'Data Visualization · Business Insights' },
-              ].map(({ icon, name, cert, issuer, skills }) => (
-                <motion.a 
-                  key={name} 
-                  href="https://www.linkedin.com/in/syed-amaan-san/details/certifications/" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  variants={staggerItem} 
-                  className="block p-8 bg-white/[0.02] rounded-xl border border-white/5 hover:border-[#f2ca50]/30 hover:shadow-[0_0_30px_rgba(242,202,80,0.08)] transition-all duration-500 text-center group cursor-pointer interactive-card"
-                >
-                  <div className="w-20 h-20 mx-auto mb-5 rounded-full border border-[#f2ca50]/20 flex items-center justify-center group-hover:border-[#f2ca50]/50 group-hover:shadow-[0_0_20px_rgba(242,202,80,0.15)] transition-all duration-500">
-                    <span className="material-symbols-outlined text-[#f2ca50] text-4xl">{icon}</span>
-                  </div>
-                  <h4 className="font-[--font-noto-serif] text-white font-bold mb-1 text-sm leading-snug">{name}</h4>
-                  <p className="font-[--font-inter] text-xs text-[#f2ca50]/70 uppercase tracking-tighter mb-2">{cert}</p>
-                  <p className="font-[--font-inter] text-[0.65rem] text-white/20 tracking-wider mb-3">{issuer}</p>
-                  <p className="font-[--font-inter] text-[0.6rem] text-white/15 leading-relaxed">{skills}</p>
-                </motion.a>
+                { image: '/cert1.jpeg', name: 'TCS iON Career Edge', cert: 'Young Professional', issuer: 'TCS iON • Mar 2026', skills: 'Communication · AI · Strategic Thinking' },
+                { image: '/cert2.jpeg', name: 'IIM Bangalore (SWAYAM)', cert: 'Strategic Management', issuer: 'IIMB • Jan 2026', skills: 'Strategic Planning · Data Analysis' },
+                { image: '/cert3.jpeg', name: 'Deloitte Australia', cert: 'Data Analytics Job Simulation', issuer: 'Forage • Oct 2025', skills: 'Data Analysis · Data Visualization' },
+                { image: '/image copy.png', name: 'Tata Group', cert: 'Data Visualisation: Empowering Business', issuer: 'Forage • Oct 2025', skills: 'Data Visualization · Business Insights' },
+              ].map(({ image, name, cert, issuer, skills }) => (
+                <motion.div key={name} variants={staggerItem}>
+                  <GlassCard className="p-8 group h-full flex flex-col items-center text-center">
+                    <a 
+                      href="https://www.linkedin.com/in/syed-amaan-san/details/certifications/" 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="block w-full h-full flex flex-col items-center"
+                    >
+                      <div className="w-full h-32 mb-6 flex items-center justify-center transition-all duration-500 group-hover:scale-110">
+                        <img src={image} alt={name} className="object-contain w-full h-full drop-shadow-xl" />
+                      </div>
+                      <h4 className="font-[--font-noto-serif] text-white font-bold mb-1 text-base leading-snug">{name}</h4>
+                      <p className="font-[--font-inter] text-sm text-[#f2ca50] uppercase tracking-tighter mb-2 font-semibold">{cert}</p>
+                      <p className="font-[--font-inter] text-xs text-white/50 tracking-wider mb-3">{issuer}</p>
+                      <p className="font-[--font-inter] text-xs text-white/40 leading-relaxed mt-auto">{skills}</p>
+                    </a>
+                  </GlassCard>
+                </motion.div>
               ))}
             </motion.div>
           </div>
