@@ -359,7 +359,7 @@ export default function PortfolioPage() {
               src="/bg-timeline.jpeg"
               alt="Cinematic Progression Background"
               fill
-              className="object-cover opacity-20"
+              className="object-cover opacity-40 object-[25%_center]"
               sizes="100vw"
             />
             <div className="absolute inset-0 bg-gradient-to-b from-[#131313] md:via-[#131313]/60 via-[#131313]/80 to-[#131313]" />
@@ -384,14 +384,14 @@ export default function PortfolioPage() {
 
               {/* ── Start Marker ── */}
               <motion.div
-                className="absolute left-[19px] md:left-1/2 -translate-x-1/2 -top-6 flex flex-col items-center z-20"
+                className="absolute left-[19px] md:left-1/2 -translate-x-1/2 -top-12 flex flex-col items-center z-20"
                 initial={{ opacity: 0, scale: 0 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
                 viewport={{ once: true }}
               >
+                <span className="font-[--font-inter] text-sm tracking-[0.3em] text-[#f2ca50] uppercase mb-4 whitespace-nowrap font-semibold shadow-black drop-shadow-md">Journey Begins</span>
                 <div className="w-5 h-5 rounded-full bg-[#f2ca50] shadow-[0_0_15px_rgba(242,202,80,0.6)]" />
-                <span className="font-[--font-inter] text-sm tracking-[0.3em] text-[#f2ca50] uppercase mt-2 whitespace-nowrap font-semibold">Journey Begins</span>
               </motion.div>
 
               {/* ── Timeline Entries ── */}
@@ -422,11 +422,11 @@ export default function PortfolioPage() {
                       transition={{ duration: 0.8, delay: delay + 0.2, ease: [0.2, 0.8, 0.2, 1] }}
                       viewport={{ once: true }}
                     >
-                      <span className="font-[--font-inter] text-xs tracking-widest text-[#f2ca50] uppercase block mb-2">{period}</span>
-                      <h3 className="font-[--font-noto-serif] text-xl text-white group-hover:text-[#f2ca50] transition-colors duration-300">{role}</h3>
-                      <p className="font-[--font-inter] text-lg text-white/40 mt-2">{org}</p>
+                      <span className="font-[--font-inter] text-sm md:text-base font-semibold tracking-widest text-[#f2ca50] uppercase block mb-3 drop-shadow-md">{period}</span>
+                      <h3 className="font-[--font-noto-serif] text-2xl md:text-3xl font-bold text-white group-hover:text-[#f2ca50] transition-colors duration-300 drop-shadow-md">{role}</h3>
+                      <p className="font-[--font-inter] text-xl md:text-2xl font-medium text-white/50 mt-2">{org}</p>
                       <motion.p
-                        className="font-[--font-inter] text-xs text-white/20 mt-4 leading-relaxed"
+                        className="font-[--font-inter] text-sm md:text-base text-white/30 mt-5 leading-relaxed"
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
                         transition={{ duration: 0.6, delay: delay + 0.5 }}
@@ -472,8 +472,8 @@ export default function PortfolioPage() {
               viewport={{ once: true }}
             >
               {[
-                { image: '/cert1.jpeg', name: 'TCS iON Career Edge', cert: 'Young Professional', issuer: 'TCS iON • Mar 2026', skills: 'Communication · AI · Strategic Thinking' },
-                { image: '/cert2.jpeg', name: 'IIM Bangalore (SWAYAM)', cert: 'Strategic Management', issuer: 'IIMB • Jan 2026', skills: 'Strategic Planning · Data Analysis' },
+                { image: '/cert2.jpeg', name: 'TCS iON Career Edge', cert: 'Young Professional', issuer: 'TCS iON • Mar 2026', skills: 'Communication · AI · Strategic Thinking' },
+                { image: '/cert1.jpeg', name: 'IIM Bangalore (SWAYAM)', cert: 'Strategic Management', issuer: 'IIMB • Jan 2026', skills: 'Strategic Planning · Data Analysis' },
                 { image: '/cert3.jpeg', name: 'Deloitte Australia', cert: 'Data Analytics Job Simulation', issuer: 'Forage • Oct 2025', skills: 'Data Analysis · Data Visualization' },
                 { image: '/image copy.png', name: 'Tata Group', cert: 'Data Visualisation: Empowering Business', issuer: 'Forage • Oct 2025', skills: 'Data Visualization · Business Insights' },
               ].map(({ image, name, cert, issuer, skills }) => (
