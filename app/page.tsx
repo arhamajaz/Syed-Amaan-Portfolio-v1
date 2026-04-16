@@ -316,8 +316,8 @@ export default function PortfolioPage() {
               viewport={{ once: true }}
             >
               {[
-                { src: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAd-8btPJ3tky27yiJMBefEOImToAy2OnsaZME5J44kTc9GN2RC2XTl4UUUE-6I0-cWeMOPlU_amwp-gOZdRCLMpiw6SwN5m8zK1XVf0ywEFW8bYCfRQ2leTkc8VIiikcwpzD8DJZ9hR4v2C8278mb8DWC6u6o8fXO2FhnzQDEZrQz3EY84TxBUxY9ooja0AKKwJ3C3Sa2gkPOzz6X6xQCkYbg5OOHrvQ1i-joRdtEV3K-NN8KA-138m-cRfq3rgge4SDN-cx6rs8Kc', tag: 'Power BI Dashboard', title: 'Consumer Preferences between Online Food Delivery and Restaurant Dining', desc: 'A comprehensive Power BI dashboard analyzing consumer preferences, comparing online food delivery habits with traditional restaurant dining patterns.' },
-                { src: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBT2slcRvcvmXDYLVaqKStnjejw-OfCbH7-Nqh275_oAJW1iqyzXzTOXiy_LKL86YiTNZu7TQTa9dNMpEuhUVoXGYk4YRo8FD38ABqpFCa9aWntSpvoSzxM-uLD8DJ5rDCHHMsLoE5GAKyTjshTqu7ea3_XlddkJzkoAy36rX9WauwvQoJwRROIB5SvjU7j6OKnXCE82RMBMQu-UPKkDsl4fYP8cD1GlNH4mQHb-CfkXM7d_3D7kmnbEAv4cpUPgjox5arsSnB_04f6', tag: 'Power BI Dashboard • Patna', title: 'Influence of Social Media on Pre-Purchase Clothing Behavior of Young Adults', desc: 'Mapping the digital footprint of young adults in Patna — how social media shapes clothing purchase decisions from awareness to conversion.' },
+                { src: '/consumer-preferences.png', tag: 'Power BI Dashboard', title: 'Consumer Preferences between Online Food Delivery and Restaurant Dining', desc: 'A comprehensive Power BI dashboard analyzing consumer preferences, comparing online food delivery habits with traditional restaurant dining patterns.' },
+                { src: '/influence-behavior.png', tag: 'Power BI Dashboard • Patna', title: 'Influence of Social Media on Pre-Purchase Clothing Behavior of Young Adults', desc: 'Mapping the digital footprint of young adults in Patna — how social media shapes clothing purchase decisions from awareness to conversion.' },
                 { src: '/image.png', tag: 'Excel • Sep 2025', title: 'Sales Analysis of Coca-Cola', desc: 'Interactive sales dashboard in Excel analyzing revenue by region, product & city with KPIs, trend lines, and comparative charts. Associated with St. Xavier\'s College of Management & Technology.' },
               ].map(({ src, tag, title, desc }) => (
                 <motion.div key={title} variants={staggerItem}>
@@ -326,7 +326,7 @@ export default function PortfolioPage() {
                       href="https://www.linkedin.com/in/syed-amaan-san/details/projects/" 
                       target="_blank" 
                       rel="noopener noreferrer" 
-                      className="block w-full h-full"
+                      className="relative block w-full h-full overflow-hidden"
                     >
                       <Image 
                         src={src} 

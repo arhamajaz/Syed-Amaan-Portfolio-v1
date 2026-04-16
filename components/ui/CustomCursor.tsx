@@ -8,9 +8,9 @@ export const CustomCursor = () => {
   const mouseX = useMotionValue(-100);
   const mouseY = useMotionValue(-100);
   
-  // Aura (Trail) - Lagging Spring
-  const auraX = useSpring(mouseX, { damping: 30, stiffness: 200, mass: 0.6 });
-  const auraY = useSpring(mouseY, { damping: 30, stiffness: 200, mass: 0.6 });
+  // Aura (Trail) - Lagging Spring with premium physics
+  const auraX = useSpring(mouseX, { damping: 40, stiffness: 150, mass: 0.5 });
+  const auraY = useSpring(mouseY, { damping: 40, stiffness: 150, mass: 0.5 });
 
   // Velocity for distortion effects
   const velX = useVelocity(mouseX);
@@ -57,7 +57,7 @@ export const CustomCursor = () => {
       }
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
     window.addEventListener('mousedown', handleMouseDown);
     window.addEventListener('mouseover', handleMouseOver);
 
@@ -80,12 +80,15 @@ export const CustomCursor = () => {
           translateY: '-50%',
           scaleX,
           scaleY,
+          willChange: "transform",
+          transform: "translateZ(0)"
         }}
         animate={{
           width: cursorVariant === 'pointer' ? 80 : 32,
           height: cursorVariant === 'pointer' ? 80 : 32,
           opacity: cursorVariant === 'text' ? 0 : 1,
         }}
+        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
       />
 
       {/* ── Inner Nucleus (Precise Dot) ── */}
@@ -96,6 +99,8 @@ export const CustomCursor = () => {
           y: mouseY,
           translateX: '-50%',
           translateY: '-50%',
+          willChange: "transform",
+          transform: "translateZ(0)"
         }}
         animate={{
           scale: isClicked ? 0.6 : cursorVariant === 'pointer' ? 0 : 1,
@@ -104,6 +109,7 @@ export const CustomCursor = () => {
           width: cursorVariant === 'text' ? 2 : 6,
           borderRadius: cursorVariant === 'text' ? 2 : '100%',
         }}
+        transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
       />
 
       {/* ── Click Radial Pulse Ripple ── */}

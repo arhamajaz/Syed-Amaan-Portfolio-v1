@@ -86,14 +86,34 @@ export function EtherealShadow({
     return (
         <div
             className={`pointer-events-none absolute inset-0 -z-10 overflow-hidden ${className}`}
-            style={{ width: "100%", height: "100%", ...style }}
+            style={{ 
+                width: "100%", 
+                height: "100%", 
+                willChange: "transform, opacity",
+                transform: "translateZ(0)",
+                ...style 
+            }}
         >
-            <div style={{ position: "absolute", inset: -displacementScale, filter: animationEnabled ? `url(#${id}) blur(4px)` : "none" }}>
+            <div 
+                style={{ 
+                    position: "absolute", 
+                    inset: -displacementScale, 
+                    filter: animationEnabled ? `url(#${id}) blur(4px)` : "none",
+                    willChange: "filter",
+                    transform: "translateZ(0)"
+                }}
+            >
                 {animationEnabled && (
-                    <svg style={{ position: "absolute" }}>
+                    <svg style={{ position: "absolute", width: 0, height: 0 }}>
                         <defs>
-                            <filter id={id}>
-                                <feTurbulence result="undulation" numOctaves="2" baseFrequency={`${mapRange(animation.scale, 0, 100, 0.001, 0.0005)},${mapRange(animation.scale, 0, 100, 0.004, 0.002)}`} seed="0" type="turbulence" />
+                            <filter id={id} colorInterpolationFilters="sRGB">
+                                <feTurbulence 
+                                    result="undulation" 
+                                    numOctaves="1" 
+                                    baseFrequency={`${mapRange(animation.scale, 0, 100, 0.001, 0.0005)},${mapRange(animation.scale, 0, 100, 0.004, 0.002)}`} 
+                                    seed="0" 
+                                    type="turbulence" 
+                                />
                                 <feColorMatrix ref={feColorMatrixRef} in="undulation" type="hueRotate" values="180" />
                                 <feColorMatrix in="dist" result="circulation" type="matrix" values="4 0 0 0 1  4 0 0 0 1  4 0 0 0 1  1 0 0 0 0" />
                                 <feDisplacementMap in="SourceGraphic" in2="circulation" scale={displacementScale} result="dist" />
@@ -102,11 +122,29 @@ export function EtherealShadow({
                         </defs>
                     </svg>
                 )}
-                <div style={{ backgroundColor: color, maskImage: `url('https://framerusercontent.com/images/ceBGguIpUU8luwByxuQz79t7To.png')`, maskSize: sizing === "stretch" ? "100% 100%" : "cover", maskRepeat: "no-repeat", maskPosition: "center", width: "100%", height: "100%" }} />
+                <div style={{ 
+                    backgroundColor: color, 
+                    maskImage: `url('https://framerusercontent.com/images/ceBGguIpUU8luwByxuQz79t7To.png')`, 
+                    maskSize: sizing === "stretch" ? "100% 100%" : "cover", 
+                    maskRepeat: "no-repeat", 
+                    maskPosition: "center", 
+                    width: "100%", 
+                    height: "100%",
+                    transform: "translateZ(0)"
+                }} />
             </div>
 
             {noise && noise.opacity > 0 && (
-                <div style={{ position: "absolute", inset: 0, backgroundImage: `url("https://framerusercontent.com/images/g0QcWrxr87K0ufOxIUFBakwYA8.png")`, backgroundSize: noise.scale * 200, backgroundRepeat: "repeat", opacity: noise.opacity / 2 }} />
+                <div style={{ 
+                    position: "absolute", 
+                    inset: 0, 
+                    backgroundImage: `url("https://framerusercontent.com/images/g0QcWrxr87K0ufOxIUFBakwYA8.png")`, 
+                    backgroundSize: `${noise.scale * 200}px`, 
+                    backgroundRepeat: "repeat", 
+                    opacity: noise.opacity / 2,
+                    willChange: "opacity",
+                    transform: "translateZ(0)"
+                }} />
             )}
         </div>
     );
