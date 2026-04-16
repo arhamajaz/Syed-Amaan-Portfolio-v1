@@ -36,7 +36,7 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
         />
       </head>
-      <body className="overflow-x-hidden" suppressHydrationWarning>
+      <body className="min-h-screen bg-[#131313] text-[#e5e2e1] overflow-x-hidden antialiased" suppressHydrationWarning>
         <ScrollProgress />
         {children}
       </body>

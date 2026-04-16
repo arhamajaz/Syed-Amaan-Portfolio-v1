@@ -29,7 +29,7 @@ const staggerItem: Variants = {
 
 export default function PortfolioPage() {
   return (
-    <main className="bg-[#131313] text-[#e5e2e1] selection:bg-white selection:text-black">
+    <main className="bg-[#131313] text-[#e5e2e1] selection:bg-white selection:text-black overflow-x-hidden">
       {/* ========================================
           TOP NAVIGATION BAR
       ======================================== */}
@@ -39,9 +39,9 @@ export default function PortfolioPage() {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 1.2, ease: [0.2, 0.8, 0.2, 1] }}
       >
-        <div className="flex justify-between items-center max-w-[1440px] mx-auto px-10 py-6 overflow-x-hidden">
+        <div className="flex justify-between items-center max-w-[1440px] mx-auto px-4 md:px-10 py-4 md:py-6 relative">
           <motion.a
-            className="font-[--font-noto-serif] font-bold text-2xl tracking-tighter text-[#f2ca50] hover:scale-105 transition-all duration-300 flex-shrink-0 whitespace-nowrap group"
+            className="font-[--font-noto-serif] font-bold text-xl md:text-2xl tracking-tighter text-[#f2ca50] hover:scale-105 transition-all duration-300 flex-shrink-0 whitespace-nowrap group relative z-10"
             href="#"
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -52,7 +52,7 @@ export default function PortfolioPage() {
           </motion.a>
           
           <motion.div 
-            className="hidden lg:flex gap-12 items-center flex-shrink mx-8"
+            className="flex lg:flex gap-6 md:gap-12 items-center flex-1 mx-4 md:mx-8 overflow-x-auto no-scrollbar snap-x touch-pan-x py-1 lg:justify-center"
             variants={staggerContainer}
             initial="initial"
             animate="whileInView"
@@ -68,7 +68,7 @@ export default function PortfolioPage() {
               <motion.a
                 key={href}
                 variants={staggerItem}
-                className="nav-link font-[--font-noto-serif] text-[0.85rem] tracking-[0.2em] uppercase text-[#e5e2e1]/50 hover:text-white transition-all duration-500 relative whitespace-nowrap group block"
+                className="nav-link font-[--font-noto-serif] text-[0.7rem] md:text-[0.85rem] tracking-[0.2em] uppercase text-[#e5e2e1]/50 hover:text-white transition-all duration-500 relative whitespace-nowrap group block snap-center"
                 href={href}
               >
                 {label}
@@ -79,7 +79,7 @@ export default function PortfolioPage() {
 
           <motion.a
             href="#connect"
-            className="bg-[#e5e2e1] text-black px-8 py-2 rounded-full font-[--font-inter] text-[0.7rem] tracking-[0.2em] font-bold uppercase hover:scale-105 hover:bg-white hover:shadow-[0_0_30px_rgba(229,226,225,0.4)] transition-all duration-500 ease-out flex-shrink-0"
+            className="bg-[#e5e2e1] text-black px-4 md:px-8 py-2 rounded-full font-[--font-inter] text-[0.6rem] md:text-[0.7rem] tracking-[0.2em] font-bold uppercase hover:scale-105 hover:bg-white hover:shadow-[0_0_30px_rgba(229,226,225,0.4)] transition-all duration-500 ease-out flex-shrink-0 relative z-10"
             initial={{ opacity: 0, scale: 0.8, x: 20 }}
             animate={{ opacity: 1, scale: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
@@ -93,7 +93,7 @@ export default function PortfolioPage() {
           HERO SECTION
       ======================================== */}
       <section
-        className="relative h-screen flex flex-col justify-center items-center px-10 overflow-hidden"
+        className="relative h-screen flex flex-col justify-center items-center px-4 md:px-10 overflow-hidden"
         id="vision"
       >
         <div className="absolute inset-0 z-0">
@@ -116,11 +116,11 @@ export default function PortfolioPage() {
           <span className="font-[--font-inter] text-sm tracking-[0.5em] text-[#f2ca50] uppercase block mb-6">
             Strategic Mindset • Analytical Precision
           </span>
-          <h1 className="font-[--font-noto-serif] text-[5rem] md:text-[8rem] leading-none font-bold mb-8 tracking-tighter" style={{ textShadow: '0 0 40px rgba(255,255,255,0.15)' }}>
+          <h1 className="font-[--font-noto-serif] text-5xl sm:text-7xl md:text-8xl lg:text-[10rem] leading-none font-bold mb-8 tracking-tighter text-balance" style={{ textShadow: '0 0 40px rgba(255,255,255,0.15)' }}>
             <span className="text-white">SYED</span>{' '}<span className="text-gradient-gold">AMAAN</span>
           </h1>
           <motion.p 
-            className="font-[--font-inter] text-lg text-white/50 max-w-2xl mx-auto tracking-wide mb-12 uppercase leading-relaxed"
+            className="font-[--font-inter] text-base md:text-lg text-white/50 max-w-2xl mx-auto tracking-wide mb-12 uppercase leading-relaxed text-pretty"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.8, duration: 1 }}
@@ -159,18 +159,18 @@ export default function PortfolioPage() {
         />
 
         {/* --- ABOUT ME SECTION --- */}
-        <section className="py-32 px-10" id="about">
+        <section className="py-20 md:py-32 px-4 md:px-10" id="about">
           <motion.div 
-            className="max-w-[1440px] mx-auto grid md:grid-cols-2 gap-24 items-start"
+            className="max-w-[1440px] mx-auto grid md:grid-cols-2 gap-12 md:gap-24 items-start"
             {...fadeInUp}
           >
-            <div className="relative aspect-[4/5] overflow-hidden rounded-xl group bg-white/5">
+            <div className="relative aspect-[4/5] overflow-hidden rounded-xl group bg-white/5 max-w-md mx-auto w-full">
               <Image
                 src="/WhatsApp Image 2026-03-25 at 7.23.09 PM.jpeg"
                 alt="Personal portrait of Syed Amaan"
                 fill
                 className="object-cover grayscale hover:grayscale-0 transition-all duration-1000 scale-105 group-hover:scale-100 opacity-80"
-                sizes="(max-width: 768px) 100vw, 50vw"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />
               <div className="absolute inset-0 ring-1 ring-inset ring-white/10" />
             </div>
@@ -179,12 +179,12 @@ export default function PortfolioPage() {
                 <span className="font-[--font-inter] text-sm tracking-[0.3em] text-[#f2ca50] uppercase block mb-4">
                   The Curator
                 </span>
-                <h2 className="font-[--font-noto-serif] text-5xl font-bold text-white leading-tight">
-                  Driven by Insight, <br />
+                <h2 className="font-[--font-noto-serif] text-3xl md:text-5xl font-bold text-white leading-tight text-balance">
+                  Driven by Insight, <br className="hidden md:block" />
                   Refined by Strategy.
                 </h2>
               </div>
-              <div className="space-y-6 font-[--font-inter] text-lg text-white/50 leading-relaxed">
+              <div className="space-y-6 font-[--font-inter] text-base md:text-lg text-white/50 leading-relaxed text-pretty">
                 <p>
                   A BBA student with a profound interest in Data Analytics,
                   seeking to leverage administrative and analytical skills in a
@@ -224,13 +224,13 @@ export default function PortfolioPage() {
         </section>
 
         {/* --- EXPERTISE SECTION --- */}
-        <section className="py-32 px-10" id="expertise">
+        <section className="py-20 md:py-32 px-4 md:px-10" id="expertise">
           <div className="max-w-[1440px] mx-auto">
-            <motion.div className="text-center mb-24" {...fadeInUp}>
+            <motion.div className="text-center mb-16 md:mb-24" {...fadeInUp}>
               <span className="font-[--font-inter] text-sm tracking-[0.3em] text-[#f2ca50] uppercase block mb-4">
                 Core Competencies
               </span>
-              <h2 className="font-[--font-noto-serif] text-4xl font-bold text-white">
+              <h2 className="font-[--font-noto-serif] text-3xl md:text-4xl font-bold text-white text-balance">
                 The Architecture of Expertise
               </h2>
             </motion.div>
@@ -269,7 +269,7 @@ export default function PortfolioPage() {
                   Key Strengths
                 </h3>
                 <motion.div 
-                  className="grid grid-cols-1 sm:grid-cols-2 gap-6"
+                  className="grid grid-cols-1 sm:grid-cols-2 gap-8 md:gap-6"
                   variants={staggerContainer}
                   initial="initial"
                   whileInView="whileInView"
@@ -284,7 +284,7 @@ export default function PortfolioPage() {
                     <motion.div key={title} variants={staggerItem}>
                       <GlassCard 
                         glowColor="#4ADBC8" 
-                        className="p-8 group h-full"
+                        className="p-10 md:p-8 group h-full mx-auto max-w-[400px] md:max-w-none"
                       >
                         <span className="material-symbols-outlined text-[#4ADBC8] mb-4 block text-4xl group-hover:scale-110 transition-transform duration-500">{icon}</span>
                         <h4 className="font-[--font-inter] font-black text-2xl text-white mb-3">{title}</h4>
@@ -299,14 +299,14 @@ export default function PortfolioPage() {
         </section>
 
         {/* --- ARCHIVE SECTION --- */}
-        <section className="py-32 px-10" id="archive">
+        <section className="py-20 md:py-32 px-4 md:px-10" id="archive">
           <div className="max-w-[1440px] mx-auto">
-            <motion.div className="flex flex-col md:flex-row justify-between items-end mb-24 gap-8" {...fadeInUp}>
+            <motion.div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 md:mb-24 gap-8" {...fadeInUp}>
               <div className="max-w-xl">
-                <span className="font-[--font-inter] text-sm tracking-[0.3em] text-[#f2ca50] uppercase block mb-4">Project Archive</span>
-                <h2 className="font-[--font-noto-serif] text-5xl font-bold text-white">Curation of Analytical Endeavors</h2>
+                <span className="font-[--font-inter] text-sm tracking-[0.3em] text-[#f2ca50] uppercase block mb-4 text-balance">Project Archive</span>
+                <h2 className="font-[--font-noto-serif] text-3xl md:text-5xl font-bold text-white text-balance">Curation of Analytical Endeavors</h2>
               </div>
-              <div className="pb-4"><span className="font-[--font-inter] text-lg text-white/20 tracking-wider">2024-2025 PORTFOLIO</span></div>
+              <div className="pb-4"><span className="font-[--font-inter] text-base md:text-lg text-white/20 tracking-wider">2024-2025 PORTFOLIO</span></div>
             </motion.div>
             <motion.div 
               className="grid grid-cols-1 md:grid-cols-3 gap-8"
@@ -336,10 +336,10 @@ export default function PortfolioPage() {
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80" />
-                      <div className="absolute bottom-0 left-0 p-10 translate-y-12 group-hover:translate-y-0 transition-transform duration-700 ease-out">
-                        <span className="font-[--font-inter] text-[0.65rem] tracking-[0.3em] text-[#f2ca50] uppercase mb-2 block">{tag}</span>
-                        <h3 className="font-[--font-noto-serif] text-xl text-white mb-4">{title}</h3>
-                        <p className="font-[--font-inter] text-sm text-white/40 opacity-0 group-hover:opacity-100 transition-all duration-700 delay-200">{desc}</p>
+                      <div className="absolute bottom-0 left-0 p-6 md:p-10 translate-y-12 group-hover:translate-y-0 transition-transform duration-700 ease-out">
+                        <span className="font-[--font-inter] text-[0.6rem] md:text-[0.65rem] tracking-[0.3em] text-[#f2ca50] uppercase mb-2 block">{tag}</span>
+                        <h3 className="font-[--font-noto-serif] text-lg md:text-xl text-white mb-4 text-balance">{title}</h3>
+                        <p className="font-[--font-inter] text-xs md:text-sm text-white/40 opacity-0 group-hover:opacity-100 transition-all duration-700 delay-200 text-pretty">{desc}</p>
                       </div>
                       <div className="absolute top-8 right-8 w-12 h-12 rounded-full border border-white/20 flex items-center justify-center opacity-0 group-hover:opacity-100 group-hover:bg-white transition-all duration-700">
                         <span className="material-symbols-outlined text-white group-hover:text-black">north_east</span>
@@ -353,7 +353,7 @@ export default function PortfolioPage() {
         </section>
 
         {/* --- TIMELINE SECTION --- */}
-        <section className="relative py-32 px-10 overflow-hidden" id="timeline">
+        <section className="relative py-20 md:py-32 px-4 md:px-10 overflow-hidden" id="timeline">
           <div className="absolute inset-0 z-0">
             <Image
               src="/bg-timeline.jpeg"
@@ -365,9 +365,9 @@ export default function PortfolioPage() {
             <div className="absolute inset-0 bg-gradient-to-b from-[#131313] md:via-[#131313]/60 via-[#131313]/80 to-[#131313]" />
           </div>
           <div className="relative z-10 max-w-[1000px] mx-auto">
-            <motion.div className="text-center mb-24" {...fadeInUp}>
+            <motion.div className="text-center mb-16 md:mb-24" {...fadeInUp}>
               <span className="font-[--font-inter] text-sm tracking-[0.3em] text-[#f2ca50] uppercase block mb-4">Career Trajectory</span>
-              <h2 className="font-[--font-noto-serif] text-4xl font-bold text-white">A Cinematic Progression</h2>
+              <h2 className="font-[--font-noto-serif] text-3xl md:text-4xl font-bold text-white text-balance">A Cinematic Progression</h2>
             </motion.div>
 
             <div className="relative">
@@ -415,26 +415,20 @@ export default function PortfolioPage() {
                     </motion.div>
 
                     {/* Content Card */}
-                    <motion.div
-                      className={`w-full md:w-[45%] pl-14 md:pl-0 ${align === 'right' ? 'md:text-right' : ''}`}
-                      initial={{ opacity: 0, x: align === 'right' ? -60 : 60 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.8, delay: delay + 0.2, ease: [0.2, 0.8, 0.2, 1] }}
-                      viewport={{ once: true }}
-                    >
-                      <span className="font-[--font-inter] text-sm md:text-base font-semibold tracking-widest text-[#f2ca50] uppercase block mb-3 drop-shadow-md">{period}</span>
-                      <h3 className="font-[--font-noto-serif] text-2xl md:text-3xl font-bold text-white group-hover:text-[#f2ca50] transition-colors duration-300 drop-shadow-md">{role}</h3>
-                      <p className="font-[--font-inter] text-xl md:text-2xl font-medium text-white/50 mt-2">{org}</p>
-                      <motion.p
-                        className="font-[--font-inter] text-sm md:text-base text-white/30 mt-5 leading-relaxed"
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        transition={{ duration: 0.6, delay: delay + 0.5 }}
-                        viewport={{ once: true }}
-                      >
-                        {desc}
-                      </motion.p>
-                    </motion.div>
+                      <div className={`w-full md:w-[45%] pl-14 md:pl-0 ${align === 'right' ? 'md:text-right' : ''}`}>
+                        <span className="font-[--font-inter] text-sm md:text-base font-semibold tracking-widest text-[#f2ca50] uppercase block mb-3 drop-shadow-md">{period}</span>
+                        <h3 className="font-[--font-noto-serif] text-xl md:text-3xl font-bold text-white group-hover:text-[#f2ca50] transition-colors duration-300 drop-shadow-md text-balance">{role}</h3>
+                        <p className="font-[--font-inter] text-lg md:text-2xl font-medium text-white/50 mt-2 text-pretty">{org}</p>
+                        <motion.p
+                          className="font-[--font-inter] text-sm md:text-base text-white/30 mt-5 leading-relaxed text-pretty"
+                          initial={{ opacity: 0 }}
+                          whileInView={{ opacity: 1 }}
+                          transition={{ duration: 0.6, delay: delay + 0.5 }}
+                          viewport={{ once: true }}
+                        >
+                          {desc}
+                        </motion.p>
+                      </div>
 
                     {align === 'right' && <div className="hidden md:block w-[45%]" />}
                     {align === 'left' && <div className="hidden md:block w-[45%] order-first" />}
@@ -458,14 +452,14 @@ export default function PortfolioPage() {
         </section>
 
         {/* --- CERTIFICATIONS SECTION --- */}
-        <section className="py-32 px-10">
+        <section className="py-20 md:py-32 px-4 md:px-10">
           <div className="max-w-[1440px] mx-auto">
-            <motion.div className="text-center mb-24" {...fadeInUp}>
+            <motion.div className="text-center mb-16 md:mb-24" {...fadeInUp}>
               <span className="font-[--font-inter] text-sm tracking-[0.3em] text-[#f2ca50] uppercase block mb-4">Recognition</span>
-              <h2 className="font-[--font-noto-serif] text-4xl font-bold text-white">Professional Certifications</h2>
+              <h2 className="font-[--font-noto-serif] text-3xl md:text-4xl font-bold text-white text-balance">Professional Certifications</h2>
             </motion.div>
             <motion.div 
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-6"
               variants={staggerContainer}
               initial="initial"
               whileInView="whileInView"
@@ -477,8 +471,8 @@ export default function PortfolioPage() {
                 { image: '/cert3.jpeg', name: 'Deloitte Australia', cert: 'Data Analytics Job Simulation', issuer: 'Forage • Oct 2025', skills: 'Data Analysis · Data Visualization' },
                 { image: '/image copy.png', name: 'Tata Group', cert: 'Data Visualisation: Empowering Business', issuer: 'Forage • Oct 2025', skills: 'Data Visualization · Business Insights' },
               ].map(({ image, name, cert, issuer, skills }) => (
-                <motion.div key={name} variants={staggerItem}>
-                  <GlassCard className="p-8 group h-full flex flex-col items-center text-center">
+                <motion.div key={name} variants={staggerItem} className="w-full h-full flex justify-center">
+                  <GlassCard className="p-8 md:p-8 group h-full flex flex-col items-center text-center max-w-[320px] sm:max-w-none">
                     <a 
                       href="https://www.linkedin.com/in/syed-amaan-san/details/certifications/" 
                       target="_blank" 
@@ -501,12 +495,12 @@ export default function PortfolioPage() {
         </section>
 
         {/* --- CONNECT SECTION --- */}
-        <section className="py-32 px-10" id="connect">
-          <div className="max-w-[1440px] mx-auto grid lg:grid-cols-2 gap-24 items-start">
+        <section className="py-20 md:py-32 px-4 md:px-10" id="connect">
+          <div className="max-w-[1440px] mx-auto grid lg:grid-cols-2 gap-12 md:gap-24 items-start">
             <motion.div className="space-y-12" {...fadeInUp}>
               <div>
                 <span className="font-[--font-inter] text-sm tracking-[0.3em] text-[#f2ca50] uppercase block mb-4">Get In Touch</span>
-                <h2 className="font-[--font-noto-serif] text-5xl font-bold text-white leading-tight">Let&apos;s Orchestrate <br />Future Insights.</h2>
+                <h2 className="font-[--font-noto-serif] text-3xl md:text-5xl font-bold text-white leading-tight text-balance">Let&apos;s Orchestrate <br />Future Insights.</h2>
               </div>
               <div className="space-y-8 font-[--font-inter] text-lg text-white/50">
                 <motion.a 
@@ -514,10 +508,10 @@ export default function PortfolioPage() {
                   className="flex items-center gap-6 group interactive-card"
                   whileHover={{ x: 10 }}
                 >
-                  <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-white transition-all duration-300">
+                  <div className="w-10 h-10 md:w-12 md:h-12 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-white transition-all duration-300 flex-shrink-0">
                     <span className="material-symbols-outlined text-[#f2ca50] group-hover:text-black">mail</span>
                   </div>
-                  <span className="group-hover:text-white transition-colors font-medium">syedamaansan24@gmail.com</span>
+                  <span className="group-hover:text-white transition-colors font-medium break-all md:break-words">syedamaansan24@gmail.com</span>
                 </motion.a>
                 <div className="flex items-center gap-6 group">
                   <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center">
@@ -527,7 +521,7 @@ export default function PortfolioPage() {
                 </div>
               </div>
             </motion.div>
-            <motion.div className="glass-card p-12 rounded-xl" {...fadeInUp}>
+            <motion.div className="glass-card p-8 md:p-12 rounded-xl" {...fadeInUp}>
               <div className="space-y-10">
                 <a 
                   href="https://docs.google.com/forms/d/e/1FAIpQLSc4gYl7oTWiN-Wdowt550TJnL4q7gwTI4x-KawzfhPS3hZtlw/viewform" 
@@ -543,14 +537,14 @@ export default function PortfolioPage() {
         </section>
       </div>
 
-      <footer className="bg-[#0e0e0e] py-8 border-t border-white/5">
-        <div className="flex flex-col md:flex-row justify-between items-center px-16 w-full max-w-[1440px] mx-auto gap-6">
+      <footer className="bg-[#0e0e0e] py-12 md:py-8 border-t border-white/5">
+        <div className="flex flex-col md:flex-row justify-between items-center md:items-start px-4 md:px-16 w-full max-w-[1440px] mx-auto gap-8 md:gap-6">
           <div className="text-[#f2ca50] font-black font-[--font-noto-serif] text-lg tracking-tighter uppercase leading-tight">
             SYED<br />AMAAN
           </div>
-          <div className="text-center md:text-left">
-            <p className="font-[--font-inter] text-[0.7rem] tracking-[0.15em] uppercase text-white/30 mb-1">© 2024 SYED AMAAN. THE VISIONARY CURATOR.</p>
-            <p className="font-[--font-inter] text-[0.65rem] tracking-[0.15em] uppercase text-[#f2ca50]/40 italic">Made with love and dedication.</p>
+          <div className="text-center md:text-left flex-1">
+            <p className="font-[--font-inter] text-[0.6rem] md:text-[0.7rem] tracking-[0.15em] uppercase text-white/30 mb-1 text-pretty">© 2024 SYED AMAAN. THE VISIONARY CURATOR.</p>
+            <p className="font-[--font-inter] text-[0.6rem] md:text-[0.65rem] tracking-[0.15em] uppercase text-[#f2ca50]/40 italic">Made with love and dedication.</p>
           </div>
           <div className="flex gap-8">
             <a className="font-[--font-inter] text-xs tracking-[0.2em] uppercase text-white/30 hover:text-[#f2ca50] transition-all duration-500" href="https://linkedin.com/in/syed-amaan-san/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
