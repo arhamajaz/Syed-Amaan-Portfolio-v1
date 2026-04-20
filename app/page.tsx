@@ -353,7 +353,7 @@ export default function PortfolioPage() {
         </section>
 
         {/* --- TIMELINE SECTION --- */}
-        <section className="relative py-20 md:py-32 px-4 md:px-10 overflow-hidden" id="timeline">
+        <section className="relative py-20 md:py-32 px-8 md:px-10 overflow-hidden" id="timeline">
           <div className="absolute inset-0 z-0">
             <Image
               src="/bg-timeline.jpeg"
@@ -364,7 +364,7 @@ export default function PortfolioPage() {
             />
             <div className="absolute inset-0 bg-gradient-to-b from-[#131313] md:via-[#131313]/60 via-[#131313]/80 to-[#131313]" />
           </div>
-          <div className="relative z-10 max-w-[1000px] mx-auto">
+          <div className="relative z-10 w-full max-w-screen-xl mx-auto">
             <motion.div className="text-center mb-16 md:mb-24" {...fadeInUp}>
               <span className="font-[--font-inter] text-sm tracking-[0.3em] text-[#f2ca50] uppercase block mb-4">Career Trajectory</span>
               <h2 className="font-[--font-noto-serif] text-3xl md:text-4xl font-bold text-white text-balance">A Cinematic Progression</h2>
@@ -372,9 +372,9 @@ export default function PortfolioPage() {
 
             <div className="relative">
               {/* ── Journey Path Line ── */}
-              <div className="absolute left-[19px] md:left-1/2 top-0 bottom-0 w-px bg-white/5" />
+              <div className="absolute left-[32px] md:left-1/2 top-0 bottom-0 w-px bg-white/5" />
               <motion.div
-                className="absolute left-[19px] md:left-1/2 top-0 bottom-0 w-px origin-top"
+                className="absolute left-[32px] md:left-1/2 top-0 bottom-0 w-px origin-top"
                 style={{ background: 'linear-gradient(to bottom, #f2ca50, #f2ca50 70%, transparent)' }}
                 initial={{ scaleY: 0 }}
                 whileInView={{ scaleY: 1 }}
@@ -384,14 +384,14 @@ export default function PortfolioPage() {
 
               {/* ── Start Marker ── */}
               <motion.div
-                className="absolute left-[19px] md:left-1/2 -translate-x-1/2 -top-12 flex flex-col items-center z-20"
+                className="absolute left-[32px] md:left-1/2 -top-12 flex flex-col items-start md:items-center z-20"
                 initial={{ opacity: 0, scale: 0 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
                 viewport={{ once: true }}
               >
-                <span className="font-[--font-inter] text-sm tracking-[0.3em] text-[#f2ca50] uppercase mb-4 whitespace-nowrap font-semibold shadow-black drop-shadow-md">Journey Begins</span>
-                <div className="w-5 h-5 rounded-full bg-[#f2ca50] shadow-[0_0_15px_rgba(242,202,80,0.6)]" />
+                <span className="font-[--font-inter] text-sm tracking-[0.3em] text-[#f2ca50] uppercase mb-4 whitespace-nowrap font-semibold shadow-black drop-shadow-md text-left md:text-center md:translate-x-0 translate-x-[-10px]">Journey Begins</span>
+                <div className="w-4 h-4 rounded-full bg-[#f2ca50] shadow-[0_0_15px_rgba(242,202,80,0.6)] -translate-x-1/2 md:translate-x-0" />
               </motion.div>
 
               {/* ── Timeline Entries ── */}
@@ -401,34 +401,36 @@ export default function PortfolioPage() {
                   { period: '2024', role: 'Internship', org: 'Unschool', desc: 'Assisted in market research and operational streamlining for emerging educational platforms.', align: 'left' as const, delay: 0.6 },
                   { period: '2023 - 2026', role: 'BBA', org: "St. Xavier's College", desc: 'Developing expertise in business administration with a specialized concentration in data-driven management.', align: 'right' as const, delay: 0.9 },
                 ].map(({ period, role, org, desc, align, delay }) => (
-                  <div key={role} className="relative flex flex-col md:flex-row items-center md:justify-between w-full group">
+                  <div key={role} className="relative flex flex-row md:items-center md:justify-between w-full group">
                     {/* Dot with pulse */}
-                    <motion.div
-                      className="absolute left-0 md:left-1/2 md:-ml-[20px] z-10"
-                      initial={{ scale: 0, opacity: 0 }}
-                      whileInView={{ scale: 1, opacity: 1 }}
-                      transition={{ duration: 0.5, delay, type: 'spring', stiffness: 200 }}
-                      viewport={{ once: true }}
-                    >
-                      <div className="w-10 h-10 rounded-full border-4 border-[#131313] bg-[#f2ca50] group-hover:scale-125 transition-all duration-500 shadow-[0_0_20px_rgba(242,202,80,0.3)] group-hover:shadow-[0_0_30px_rgba(242,202,80,0.6)]" />
-                      <div className="absolute inset-0 w-10 h-10 rounded-full bg-[#f2ca50]/20 animate-ping" style={{ animationDuration: '3s' }} />
-                    </motion.div>
+                    <div className="relative md:absolute left-0 md:left-1/2 md:-ml-[16px] z-10 flex-shrink-0 w-16 md:w-auto flex justify-center">
+                      <motion.div
+                        className="relative z-10"
+                        initial={{ scale: 0, opacity: 0 }}
+                        whileInView={{ scale: 1, opacity: 1 }}
+                        transition={{ duration: 0.5, delay, type: 'spring', stiffness: 200 }}
+                        viewport={{ once: true }}
+                      >
+                        <div className="w-4 h-4 md:w-8 md:h-8 rounded-full border-2 md:border-4 border-[#131313] bg-[#f2ca50] group-hover:scale-125 transition-all duration-500 shadow-[0_0_10px_rgba(242,202,80,0.3)] group-hover:shadow-[0_0_20px_rgba(242,202,80,0.6)]" />
+                        <div className="absolute inset-0 w-4 h-4 md:w-8 md:h-8 rounded-full bg-[#f2ca50]/20 animate-ping" style={{ animationDuration: '3s' }} />
+                      </motion.div>
+                    </div>
 
                     {/* Content Card */}
-                      <div className={`w-full md:w-[45%] pl-14 md:pl-0 ${align === 'right' ? 'md:text-right' : ''}`}>
-                        <span className="font-[--font-inter] text-sm md:text-base font-semibold tracking-widest text-[#f2ca50] uppercase block mb-3 drop-shadow-md">{period}</span>
-                        <h3 className="font-[--font-noto-serif] text-xl md:text-3xl font-bold text-white group-hover:text-[#f2ca50] transition-colors duration-300 drop-shadow-md text-balance">{role}</h3>
-                        <p className="font-[--font-inter] text-lg md:text-2xl font-medium text-white/50 mt-2 text-pretty">{org}</p>
-                        <motion.p
-                          className="font-[--font-inter] text-sm md:text-base text-white/30 mt-5 leading-relaxed text-pretty"
-                          initial={{ opacity: 0 }}
-                          whileInView={{ opacity: 1 }}
-                          transition={{ duration: 0.6, delay: delay + 0.5 }}
-                          viewport={{ once: true }}
-                        >
-                          {desc}
-                        </motion.p>
-                      </div>
+                    <div className={`flex-1 md:w-[45%] pl-2 md:pl-0 ${align === 'right' ? 'md:text-right' : ''}`}>
+                      <span className="font-[--font-inter] text-sm md:text-base font-semibold tracking-widest text-[#f2ca50] uppercase block mb-3 drop-shadow-md">{period}</span>
+                      <h3 className="font-[--font-noto-serif] text-xl md:text-2xl font-bold text-white group-hover:text-[#f2ca50] transition-colors duration-300 drop-shadow-md text-balance">{role}</h3>
+                      <p className="font-[--font-inter] text-base md:text-lg font-medium text-white/50 mt-2 text-pretty">{org}</p>
+                      <motion.p
+                        className="font-[--font-inter] text-sm md:text-base text-white/30 mt-5 leading-relaxed text-pretty"
+                        initial={{ opacity: 0, y: 10 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, delay: delay + 0.3 }}
+                        viewport={{ once: true }}
+                      >
+                        {desc}
+                      </motion.p>
+                    </div>
 
                     {align === 'right' && <div className="hidden md:block w-[45%]" />}
                     {align === 'left' && <div className="hidden md:block w-[45%] order-first" />}
@@ -438,14 +440,14 @@ export default function PortfolioPage() {
 
               {/* ── End Marker ── */}
               <motion.div
-                className="absolute left-[19px] md:left-1/2 -translate-x-1/2 -bottom-6 flex flex-col items-center z-20"
+                className="absolute left-[32px] md:left-1/2 -bottom-6 flex flex-col items-start md:items-center z-20"
                 initial={{ opacity: 0, scale: 0 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6, delay: 1.4 }}
                 viewport={{ once: true }}
               >
-                <div className="w-5 h-5 rounded-full bg-[#f2ca50] shadow-[0_0_15px_rgba(242,202,80,0.6)]" />
-                <span className="font-[--font-inter] text-sm tracking-[0.3em] text-[#f2ca50] uppercase mt-2 whitespace-nowrap font-semibold">Present Day</span>
+                <div className="w-4 h-4 rounded-full bg-[#f2ca50] shadow-[0_0_15px_rgba(242,202,80,0.6)] -translate-x-1/2 md:translate-x-0" />
+                <span className="font-[--font-inter] text-sm tracking-[0.3em] text-[#f2ca50] uppercase mt-2 whitespace-nowrap font-semibold text-left md:text-center md:translate-x-0 translate-x-[-10px]">Present Day</span>
               </motion.div>
             </div>
           </div>
