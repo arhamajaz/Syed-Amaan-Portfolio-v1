@@ -18,9 +18,43 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: 'SYED AMAAN | Visionary Curator & Data Analyst',
-  description:
-    'Premium, minimalist portfolio of Syed Amaan — a BBA student and Data Analyst with expertise in Power BI, Excel, SQL, and strategic management.',
+  metadataBase: new URL("https://syedamaan.dev"),
+  title: "Syed Amaan | Strategic Data Analyst",
+  description: "Portfolio of Syed Amaan, a BBA graduate specializing in Data Analytics, Business Intelligence, and transforming raw data into strategic assets using Power BI and Advanced Excel.",
+  keywords: [
+    "Syed Amaan",
+    "Data Analyst",
+    "Business Intelligence",
+    "Power BI Dashboarding",
+    "Advanced Excel",
+    "Strategic Management",
+    "Patna",
+    "BBA Graduate"
+  ],
+  authors: [{ name: "Syed Amaan" }],
+  creator: "Syed Amaan",
+  openGraph: {
+    title: "Syed Amaan | Strategic Data Analyst",
+    description: "Bridging the gap between operational efficiency and data-driven decision-making.",
+    url: "https://syedamaan.dev", // Note: Update this to the actual live domain post-deployment
+    siteName: "Syed Amaan Portfolio",
+    images: [
+      {
+        url: "/og-image.jpg", // Note: Ensure a 1200x630 image is placed in the public/ folder
+        width: 1200,
+        height: 630,
+        alt: "Syed Amaan - Data Analyst Portfolio",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Syed Amaan | Strategic Data Analyst",
+    description: "Transforming raw data into strategic assets.",
+    images: ["/og-image.jpg"],
+  },
 };
 
 export default function RootLayout({

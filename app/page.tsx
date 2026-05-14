@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { motion, HTMLMotionProps, Variants } from 'framer-motion';
+import { motion, HTMLMotionProps, Variants, useScroll, useTransform } from 'framer-motion';
 import { EtherealShadow } from '@/components/ui/etheral-shadow';
 import { VisitorCounter } from '@/components/ui/visitor-counter';
 import { GlassCard } from '@/components/ui/glass-card';
@@ -28,6 +28,9 @@ const staggerItem: Variants = {
 };
 
 export default function PortfolioPage() {
+  const { scrollY } = useScroll();
+  const heroTextY = useTransform(scrollY, [0, 800], [0, -200]);
+
   return (
     <main className="bg-[#131313] text-[#e5e2e1] selection:bg-white selection:text-black overflow-x-hidden">
       {/* ========================================
@@ -52,7 +55,7 @@ export default function PortfolioPage() {
           </motion.a>
           
           <motion.div 
-            className="flex lg:flex gap-6 md:gap-12 items-center flex-1 mx-4 md:mx-8 overflow-x-auto no-scrollbar snap-x touch-pan-x py-1 lg:justify-center"
+            className="flex lg:flex gap-4 md:gap-12 items-center flex-1 mx-2 md:mx-8 overflow-x-auto no-scrollbar snap-x touch-pan-x py-1 lg:justify-center"
             variants={staggerContainer}
             initial="initial"
             animate="whileInView"
@@ -116,9 +119,12 @@ export default function PortfolioPage() {
           <span className="font-[--font-inter] text-sm tracking-[0.5em] text-[#f2ca50] uppercase block mb-6">
             Strategic Mindset • Analytical Precision
           </span>
-          <h1 className="font-[--font-noto-serif] text-5xl sm:text-7xl md:text-8xl lg:text-[10rem] leading-none font-bold mb-8 tracking-tighter text-balance" style={{ textShadow: '0 0 40px rgba(255,255,255,0.15)' }}>
+          <motion.h1 
+            className="font-[--font-noto-serif] text-5xl sm:text-7xl md:text-8xl lg:text-[10rem] leading-none font-bold mb-8 tracking-tighter text-balance will-change-transform" 
+            style={{ y: heroTextY, textShadow: '0 0 40px rgba(255,255,255,0.15)' }}
+          >
             <span className="text-white">SYED</span>{' '}<span className="text-gradient-gold">AMAAN</span>
-          </h1>
+          </motion.h1>
           <motion.p 
             className="font-[--font-inter] text-base md:text-lg text-white/50 max-w-2xl mx-auto tracking-wide mb-12 uppercase leading-relaxed text-pretty"
             initial={{ opacity: 0 }}
@@ -159,7 +165,7 @@ export default function PortfolioPage() {
         />
 
         {/* --- ABOUT ME SECTION --- */}
-        <section className="py-20 md:py-32 px-4 md:px-10" id="about">
+        <section className="py-32 md:py-48 px-4 md:px-10" id="about">
           <motion.div 
             className="max-w-[1440px] mx-auto grid md:grid-cols-2 gap-12 md:gap-24 items-start"
             {...fadeInUp}
@@ -224,7 +230,7 @@ export default function PortfolioPage() {
         </section>
 
         {/* --- EXPERTISE SECTION --- */}
-        <section className="py-20 md:py-32 px-4 md:px-10" id="expertise">
+        <section className="py-32 md:py-48 px-4 md:px-10" id="expertise">
           <div className="max-w-[1440px] mx-auto">
             <motion.div className="text-center mb-16 md:mb-24" {...fadeInUp}>
               <span className="font-[--font-inter] text-sm tracking-[0.3em] text-[#f2ca50] uppercase block mb-4">
@@ -239,28 +245,27 @@ export default function PortfolioPage() {
                 <h3 className="font-[--font-noto-serif] text-2xl text-white border-b border-white/10 pb-4">
                   Technical Proficiency
                 </h3>
-                <div className="space-y-8">
+                <div className="flex flex-wrap gap-4">
                   {[
-                    { label: 'Data Visualization (Power BI)', pct: 90 },
-                    { label: 'Advanced Excel & Basic Tableau', pct: 85 },
-                    { label: 'Python for Analysis', pct: 70 },
-                  ].map(({ label, pct }) => (
-                    <div key={label}>
-                      <div className="flex mb-4">
-                        <span className="font-[--font-inter] text-xs tracking-widest uppercase text-white/50">
-                          {label}
-                        </span>
-                      </div>
-                      <div className="h-1 bg-white/5 rounded-full overflow-hidden">
-                        <motion.div
-                          className="h-full bg-[#f2ca50]"
-                          initial={{ width: 0 }}
-                          whileInView={{ width: `${pct}%` }}
-                          transition={{ duration: 1.5, delay: 0.5 }}
-                          viewport={{ once: true }}
-                        />
-                      </div>
-                    </div>
+                    'Data Visualization',
+                    'Power BI Dashboarding',
+                    'Advanced Excel Modeling',
+                    'Tableau Analytics',
+                    'Python Data Science',
+                    'Statistical Analysis',
+                    'Strategic Management',
+                    'CRM & Lead Generation',
+                  ].map((skill, sIdx) => (
+                    <motion.div
+                      key={skill}
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.4, delay: sIdx * 0.08 }}
+                      viewport={{ once: true }}
+                      className="px-6 py-3 rounded-full border border-white/10 bg-white/5 text-xs sm:text-sm font-mono uppercase tracking-widest text-white/70 transition-all duration-300 hover:border-[#f2ca50] hover:text-[#f2ca50] hover:bg-[#f2ca50]/5 cursor-default select-none"
+                    >
+                      {skill}
+                    </motion.div>
                   ))}
                 </div>
               </motion.div>
@@ -284,7 +289,7 @@ export default function PortfolioPage() {
                     <motion.div key={title} variants={staggerItem}>
                       <GlassCard 
                         glowColor="#4ADBC8" 
-                        className="p-10 md:p-8 group h-full mx-auto max-w-[400px] md:max-w-none"
+                        className="p-10 md:p-8 group h-full mx-auto max-w-[400px] md:max-w-none hover:border-[#4ADBC8]/30 transition-colors duration-500"
                       >
                         <span className="material-symbols-outlined text-[#4ADBC8] mb-4 block text-4xl group-hover:scale-110 transition-transform duration-500">{icon}</span>
                         <h4 className="font-[--font-inter] font-black text-2xl text-white mb-3">{title}</h4>
@@ -299,7 +304,7 @@ export default function PortfolioPage() {
         </section>
 
         {/* --- ARCHIVE SECTION --- */}
-        <section className="py-20 md:py-32 px-4 md:px-10" id="archive">
+        <section className="py-32 md:py-48 px-4 md:px-10" id="archive">
           <div className="max-w-[1440px] mx-auto">
             <motion.div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 md:mb-24 gap-8" {...fadeInUp}>
               <div className="max-w-xl">
@@ -308,20 +313,20 @@ export default function PortfolioPage() {
               </div>
               <div className="pb-4"><span className="font-[--font-inter] text-base md:text-lg text-white/20 tracking-wider">2024-2025 PORTFOLIO</span></div>
             </motion.div>
-            <motion.div 
-              className="grid grid-cols-1 md:grid-cols-3 gap-8"
-              variants={staggerContainer}
-              initial="initial"
-              whileInView="whileInView"
-              viewport={{ once: true }}
-            >
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {[
                 { src: '/consumer-preferences.png', tag: 'Power BI Dashboard', title: 'Consumer Preferences between Online Food Delivery and Restaurant Dining', desc: 'A comprehensive Power BI dashboard analyzing consumer preferences, comparing online food delivery habits with traditional restaurant dining patterns.' },
                 { src: '/influence-behavior.png', tag: 'Power BI Dashboard • Patna', title: 'Influence of Social Media on Pre-Purchase Clothing Behavior of Young Adults', desc: 'Mapping the digital footprint of young adults in Patna — how social media shapes clothing purchase decisions from awareness to conversion.' },
                 { src: '/image.png', tag: 'Excel • Sep 2025', title: 'Sales Analysis of Coca-Cola', desc: 'Interactive sales dashboard in Excel analyzing revenue by region, product & city with KPIs, trend lines, and comparative charts. Associated with St. Xavier\'s College of Management & Technology.' },
-              ].map(({ src, tag, title, desc }) => (
-                <motion.div key={title} variants={staggerItem}>
-                  <GlassCard className="group relative aspect-[3/4] cursor-pointer">
+              ].map(({ src, tag, title, desc }, index) => (
+                <motion.div 
+                  key={title}
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: index * 0.15 }}
+                >
+                  <GlassCard glowColor="#f2ca50" className="group relative aspect-[3/4] max-h-[520px] cursor-pointer hover:border-[#f2ca50]/30 transition-colors duration-500">
                     <a 
                       href="https://www.linkedin.com/in/syed-amaan-san/details/projects/" 
                       target="_blank" 
@@ -348,133 +353,124 @@ export default function PortfolioPage() {
                   </GlassCard>
                 </motion.div>
               ))}
-            </motion.div>
+            </div>
           </div>
         </section>
 
         {/* --- TIMELINE SECTION --- */}
-        <section className="relative py-20 md:py-32 px-8 md:px-10 overflow-hidden" id="timeline">
-          <div className="absolute inset-0 z-0">
-            <Image
-              src="/bg-timeline.jpeg"
-              alt="Cinematic Progression Background"
-              fill
-              className="object-cover opacity-40 object-[25%_center]"
-              sizes="100vw"
-            />
-            <div className="absolute inset-0 bg-gradient-to-b from-[#131313] md:via-[#131313]/60 via-[#131313]/80 to-[#131313]" />
-          </div>
-          <div className="relative z-10 w-full max-w-screen-xl mx-auto">
+        <section className="relative py-32 md:py-48 px-4 sm:px-6 md:px-10 bg-[#131313]" id="timeline">
+          <div className="relative z-10 w-full max-w-5xl mx-auto">
             <motion.div className="text-center mb-16 md:mb-24" {...fadeInUp}>
-              <span className="font-[--font-inter] text-sm tracking-[0.3em] text-[#f2ca50] uppercase block mb-4">Career Trajectory</span>
-              <h2 className="font-[--font-noto-serif] text-3xl md:text-4xl font-bold text-white text-balance">A Cinematic Progression</h2>
+              <span className="font-[--font-inter] text-xs md:text-sm tracking-[0.3em] text-[#f2ca50] uppercase block mb-4">
+                Career Trajectory
+              </span>
+              <h2 className="font-[--font-noto-serif] text-3xl md:text-5xl font-bold text-white tracking-tight">
+                Professional Experience
+              </h2>
             </motion.div>
 
-            <div className="relative">
-              {/* ── Journey Path Line ── */}
-              <div className="absolute left-[32px] md:left-1/2 top-0 bottom-0 w-px bg-white/5" />
-              <motion.div
-                className="absolute left-[32px] md:left-1/2 top-0 bottom-0 w-px origin-top"
-                style={{ background: 'linear-gradient(to bottom, #f2ca50, #f2ca50 70%, transparent)' }}
-                initial={{ scaleY: 0 }}
-                whileInView={{ scaleY: 1 }}
-                transition={{ duration: 2, ease: [0.2, 0.8, 0.2, 1] }}
-                viewport={{ once: true }}
-              />
+            {/* Premium Minimalist Vertical Timeline Container */}
+            <div className="relative pt-4 pb-12">
+              {/* 1px Solid Vertical Structural Baseline */}
+              <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-white/10 transform md:-translate-x-1/2" />
 
-              {/* ── Start Marker ── */}
-              <motion.div
-                className="absolute left-[32px] md:left-1/2 -top-12 flex flex-col items-start md:items-center z-20"
-                initial={{ opacity: 0, scale: 0 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                viewport={{ once: true }}
-              >
-                <span className="font-[--font-inter] text-sm tracking-[0.3em] text-[#f2ca50] uppercase mb-4 whitespace-nowrap font-semibold shadow-black drop-shadow-md text-left md:text-center md:translate-x-0 translate-x-[-10px]">Journey Begins</span>
-                <div className="w-4 h-4 rounded-full bg-[#f2ca50] shadow-[0_0_15px_rgba(242,202,80,0.6)] -translate-x-1/2 md:translate-x-0" />
-              </motion.div>
-
-              {/* ── Timeline Entries ── */}
-              <div className="space-y-28 pt-14 pb-14">
+              {/* Timeline Nodes mapping internship experiences */}
+              <div className="space-y-16 md:space-y-24">
                 {[
-                  { period: '2024 - Present', role: 'Marketing Intern', org: 'DNP Health Seva Pvt. Ltd.', desc: 'Leading digital initiatives and coordinating patient outreach programs with strategic focus.', align: 'right' as const, delay: 0.3 },
-                  { period: '2024', role: 'Internship', org: 'Unschool', desc: 'Assisted in market research and operational streamlining for emerging educational platforms.', align: 'left' as const, delay: 0.6 },
-                  { period: '2023 - 2026', role: 'BBA', org: "St. Xavier's College", desc: 'Developing expertise in business administration with a specialized concentration in data-driven management.', align: 'right' as const, delay: 0.9 },
-                ].map(({ period, role, org, desc, align, delay }) => (
-                  <div key={role} className="relative flex flex-row md:items-center md:justify-between w-full group">
-                    {/* Dot with pulse */}
-                    <div className="relative md:absolute left-0 md:left-1/2 md:-ml-[16px] z-10 flex-shrink-0 w-16 md:w-auto flex justify-center">
-                      <motion.div
-                        className="relative z-10"
-                        initial={{ scale: 0, opacity: 0 }}
-                        whileInView={{ scale: 1, opacity: 1 }}
-                        transition={{ duration: 0.5, delay, type: 'spring', stiffness: 200 }}
-                        viewport={{ once: true }}
-                      >
-                        <div className="w-4 h-4 md:w-8 md:h-8 rounded-full border-2 md:border-4 border-[#131313] bg-[#f2ca50] group-hover:scale-125 transition-all duration-500 shadow-[0_0_10px_rgba(242,202,80,0.3)] group-hover:shadow-[0_0_20px_rgba(242,202,80,0.6)]" />
-                        <div className="absolute inset-0 w-4 h-4 md:w-8 md:h-8 rounded-full bg-[#f2ca50]/20 animate-ping" style={{ animationDuration: '3s' }} />
-                      </motion.div>
-                    </div>
+                  {
+                    role: 'Marketing Intern',
+                    company: 'DNP Health Seva Pvt. Ltd.',
+                    period: 'June 2025 - July 2025',
+                    bullets: [
+                      'Conceptualized and edited high-engagement video reels using Adobe Premiere Pro, elevating digital brand presence.',
+                      'Optimized social media channels through targeted content strategies, increasing organic reach and audience interactions.',
+                      'Contributed to comprehensive campaign strategies, aligning promotional messaging with core marketing objectives.',
+                    ],
+                    side: 'left',
+                  },
+                  {
+                    role: 'Intern',
+                    company: 'Unschool',
+                    period: 'Feb 2024 - May 2024',
+                    bullets: [
+                      'Managed data entry pipelines and maintained CRM records to streamline user tracking and operational workflows.',
+                      'Executed targeted lead generation campaigns to identify and acquire high-potential prospective learners.',
+                      'Orchestrated personalized WhatsApp marketing broadcasts, optimizing direct messaging engagement and conversion rates.',
+                      'Conducted primary and secondary market research to uncover actionable insights on user demand and competitor trends.',
+                    ],
+                    side: 'right',
+                  },
+                ].map(({ role, company, period, bullets, side }, index) => (
+                  <motion.div
+                    key={role}
+                    className="relative w-full group"
+                    initial={{ opacity: 0, x: side === 'left' ? -30 : 30 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ type: "spring", stiffness: 100, damping: 20, delay: index * 0.15 }}
+                    viewport={{ once: true, margin: "-50px" }}
+                  >
+                    {/* Glowing Dot resting on the vertical line */}
+                    <div className="absolute left-4 md:left-1/2 top-2 w-3 h-3 rounded-full bg-[#f2ca50] shadow-[0_0_10px_#f2ca50] transform -translate-x-1/2 z-20 transition-transform duration-500 group-hover:scale-125" />
 
-                    {/* Content Card */}
-                    <div className={`flex-1 md:w-[45%] pl-2 md:pl-0 ${align === 'right' ? 'md:text-right' : ''}`}>
-                      <span className="font-[--font-inter] text-sm md:text-base font-semibold tracking-widest text-[#f2ca50] uppercase block mb-3 drop-shadow-md">{period}</span>
-                      <h3 className="font-[--font-noto-serif] text-xl md:text-2xl font-bold text-white group-hover:text-[#f2ca50] transition-colors duration-300 drop-shadow-md text-balance">{role}</h3>
-                      <p className="font-[--font-inter] text-base md:text-lg font-medium text-white/50 mt-2 text-pretty">{org}</p>
-                      <motion.p
-                        className="font-[--font-inter] text-sm md:text-base text-white/30 mt-5 leading-relaxed text-pretty"
-                        initial={{ opacity: 0, y: 10 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, delay: delay + 0.3 }}
-                        viewport={{ once: true }}
-                      >
-                        {desc}
-                      </motion.p>
+                    {/* Content Box aligned alternatingly on Desktop */}
+                    <div
+                      className={`pl-10 md:pl-0 w-full md:w-[45%] ${
+                        side === 'left' ? 'md:mr-auto md:pr-10' : 'md:ml-auto md:pl-10'
+                      }`}
+                    >
+                      <span className="font-[--font-inter] text-xs md:text-sm tracking-widest text-[#f2ca50] uppercase block mb-2 font-semibold">
+                        {period}
+                      </span>
+                      <h3 className="font-[--font-noto-serif] text-2xl md:text-3xl font-bold text-white mb-1 group-hover:text-[#f2ca50] transition-colors duration-300">
+                        {role}
+                      </h3>
+                      <p className="font-[--font-inter] text-base font-medium text-white/80 mb-5">
+                        {company}
+                      </p>
+                      <ul className="space-y-3">
+                        {bullets.map((bullet, bIdx) => (
+                          <li
+                            key={bIdx}
+                            className="font-[--font-inter] text-sm md:text-base text-white/60 leading-relaxed flex items-start"
+                          >
+                            <span className="text-[#f2ca50]/60 mr-3 mt-1 text-xs select-none">
+                              ✦
+                            </span>
+                            <span className="flex-1">{bullet}</span>
+                          </li>
+                        ))}
+                      </ul>
                     </div>
-
-                    {align === 'right' && <div className="hidden md:block w-[45%]" />}
-                    {align === 'left' && <div className="hidden md:block w-[45%] order-first" />}
-                  </div>
+                  </motion.div>
                 ))}
               </div>
-
-              {/* ── End Marker ── */}
-              <motion.div
-                className="absolute left-[32px] md:left-1/2 -bottom-6 flex flex-col items-start md:items-center z-20"
-                initial={{ opacity: 0, scale: 0 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, delay: 1.4 }}
-                viewport={{ once: true }}
-              >
-                <div className="w-4 h-4 rounded-full bg-[#f2ca50] shadow-[0_0_15px_rgba(242,202,80,0.6)] -translate-x-1/2 md:translate-x-0" />
-                <span className="font-[--font-inter] text-sm tracking-[0.3em] text-[#f2ca50] uppercase mt-2 whitespace-nowrap font-semibold text-left md:text-center md:translate-x-0 translate-x-[-10px]">Present Day</span>
-              </motion.div>
             </div>
           </div>
         </section>
 
         {/* --- CERTIFICATIONS SECTION --- */}
-        <section className="py-20 md:py-32 px-4 md:px-10">
+        <section className="py-32 md:py-48 px-4 md:px-10">
           <div className="max-w-[1440px] mx-auto">
             <motion.div className="text-center mb-16 md:mb-24" {...fadeInUp}>
               <span className="font-[--font-inter] text-sm tracking-[0.3em] text-[#f2ca50] uppercase block mb-4">Recognition</span>
               <h2 className="font-[--font-noto-serif] text-3xl md:text-4xl font-bold text-white text-balance">Professional Certifications</h2>
             </motion.div>
-            <motion.div 
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-6"
-              variants={staggerContainer}
-              initial="initial"
-              whileInView="whileInView"
-              viewport={{ once: true }}
-            >
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-6">
               {[
                 { image: '/cert2.jpeg', name: 'TCS iON Career Edge', cert: 'Young Professional', issuer: 'TCS iON • Mar 2026', skills: 'Communication · AI · Strategic Thinking' },
                 { image: '/cert1.jpeg', name: 'IIM Bangalore (SWAYAM)', cert: 'Strategic Management', issuer: 'IIMB • Jan 2026', skills: 'Strategic Planning · Data Analysis' },
                 { image: '/cert3.jpeg', name: 'Deloitte Australia', cert: 'Data Analytics Job Simulation', issuer: 'Forage • Oct 2025', skills: 'Data Analysis · Data Visualization' },
                 { image: '/image copy.png', name: 'Tata Group', cert: 'Data Visualisation: Empowering Business', issuer: 'Forage • Oct 2025', skills: 'Data Visualization · Business Insights' },
-              ].map(({ image, name, cert, issuer, skills }) => (
-                <motion.div key={name} variants={staggerItem} className="w-full h-full flex justify-center">
-                  <GlassCard className="p-8 md:p-8 group h-full flex flex-col items-center text-center max-w-[320px] sm:max-w-none">
+              ].map(({ image, name, cert, issuer, skills }, index) => (
+                <motion.div 
+                  key={name} 
+                  className="w-full h-full flex justify-center"
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: index * 0.15 }}
+                >
+                  <GlassCard className="p-8 md:p-8 group h-full flex flex-col items-center text-center max-w-[320px] sm:max-w-none w-full hover:border-white/20 transition-colors duration-500">
                     <a 
                       href="https://www.linkedin.com/in/syed-amaan-san/details/certifications/" 
                       target="_blank" 
@@ -492,12 +488,12 @@ export default function PortfolioPage() {
                   </GlassCard>
                 </motion.div>
               ))}
-            </motion.div>
+            </div>
           </div>
         </section>
 
         {/* --- CONNECT SECTION --- */}
-        <section className="py-20 md:py-32 px-4 md:px-10" id="connect">
+        <section className="py-32 md:py-48 px-4 md:px-10" id="connect">
           <div className="max-w-[1440px] mx-auto grid lg:grid-cols-2 gap-12 md:gap-24 items-start">
             <motion.div className="space-y-12" {...fadeInUp}>
               <div>
@@ -531,7 +527,7 @@ export default function PortfolioPage() {
                   rel="noopener noreferrer" 
                   className="w-full inline-block text-center bg-[#f2ca50] text-black py-5 rounded-md font-[--font-inter] text-sm tracking-[0.3em] uppercase hover:scale-[1.02] hover:shadow-[0_0_20px_rgba(242,202,80,0.4)] transition-all duration-300"
                 >
-                  Initialize Connection
+                  Send a Message
                 </a>
               </div>
             </motion.div>
@@ -545,7 +541,7 @@ export default function PortfolioPage() {
             SYED<br />AMAAN
           </div>
           <div className="text-center md:text-left flex-1">
-            <p className="font-[--font-inter] text-[0.6rem] md:text-[0.7rem] tracking-[0.15em] uppercase text-white/30 mb-1 text-pretty">© 2024 SYED AMAAN. THE VISIONARY CURATOR.</p>
+            <p className="font-[--font-inter] text-[0.6rem] md:text-[0.7rem] tracking-[0.15em] uppercase text-white/30 mb-1 text-pretty">© 2026 SYED AMAAN. DATA ANALYST.</p>
             <p className="font-[--font-inter] text-[0.6rem] md:text-[0.65rem] tracking-[0.15em] uppercase text-[#f2ca50]/40 italic">Made with love and dedication.</p>
           </div>
           <div className="flex gap-8">

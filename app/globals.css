@@ -10,9 +10,17 @@
 }
 
 @layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
   html {
     scroll-behavior: smooth;
     overflow-x: hidden;
+    /* Prevent iOS bounce from causing layout shifts */
+    -webkit-overflow-scrolling: touch;
   }
 
   body {
@@ -20,6 +28,9 @@
     color: #e5e2e1;
     font-family: 'Inter', sans-serif;
     overflow-x: hidden;
+    /* Prevent long words / emails from breaking layout on mobile */
+    word-break: break-word;
+    overflow-wrap: break-word;
   }
 
   ::selection {

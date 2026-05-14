@@ -85,7 +85,7 @@ export const GlassCard: React.FC<GlassCardProps> = ({
           transformStyle: "preserve-3d",
           willChange: "transform",
         }}
-        className={`relative overflow-hidden rounded-2xl border transition-all duration-500 ease-out ${className}`}
+        className={`relative overflow-hidden rounded-2xl border border-white/5 transition-all duration-500 ease-out ${className}`}
       >
         {/* Background Glass Layer */}
         <div 
@@ -95,8 +95,9 @@ export const GlassCard: React.FC<GlassCardProps> = ({
         
         {/* Border Glow Layer */}
         <div 
-          className="absolute inset-0 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl pointer-events-none"
+          className="absolute inset-0 z-10 transition-opacity duration-500 rounded-2xl pointer-events-none"
           style={{
+            opacity: isHovered ? 1 : 0,
             border: `1.5px solid ${isHovered ? glowColor : 'rgba(255, 255, 255, 0.1)'}`,
             boxShadow: isHovered ? `0 0 20px ${glowColor}33` : 'none',
             transform: "translateZ(0)"
