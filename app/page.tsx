@@ -165,9 +165,9 @@ export default function PortfolioPage() {
         />
 
         {/* --- ABOUT ME SECTION --- */}
-        <section className="py-32 md:py-48 px-4 md:px-10" id="about">
+        <section className="py-20 md:py-24 px-4 md:px-10" id="about">
           <motion.div 
-            className="max-w-[1440px] mx-auto grid md:grid-cols-2 gap-12 md:gap-24 items-start"
+            className="max-w-[1440px] mx-auto grid md:grid-cols-2 gap-8 md:gap-12 items-start"
             {...fadeInUp}
           >
             <div className="relative aspect-[4/5] overflow-hidden rounded-xl group bg-white/5 max-w-md mx-auto w-full">
@@ -230,9 +230,9 @@ export default function PortfolioPage() {
         </section>
 
         {/* --- EXPERTISE SECTION --- */}
-        <section className="py-32 md:py-48 px-4 md:px-10" id="expertise">
+        <section className="py-20 md:py-24 px-4 md:px-10" id="expertise">
           <div className="max-w-[1440px] mx-auto">
-            <motion.div className="text-center mb-16 md:mb-24" {...fadeInUp}>
+            <motion.div className="text-center mb-12 md:mb-16" {...fadeInUp}>
               <span className="font-[--font-inter] text-sm tracking-[0.3em] text-[#f2ca50] uppercase block mb-4">
                 Core Competencies
               </span>
@@ -240,7 +240,7 @@ export default function PortfolioPage() {
                 The Architecture of Expertise
               </h2>
             </motion.div>
-            <div className="grid md:grid-cols-2 gap-16">
+            <div className="grid md:grid-cols-2 gap-8">
               <motion.div className="space-y-12" {...fadeInUp}>
                 <h3 className="font-[--font-noto-serif] text-2xl text-white border-b border-white/10 pb-4">
                   Technical Proficiency
@@ -304,9 +304,9 @@ export default function PortfolioPage() {
         </section>
 
         {/* --- ARCHIVE SECTION --- */}
-        <section className="py-32 md:py-48 px-4 md:px-10" id="archive">
+        <section className="py-20 md:py-24 px-4 md:px-10" id="archive">
           <div className="max-w-[1440px] mx-auto">
-            <motion.div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 md:mb-24 gap-8" {...fadeInUp}>
+            <motion.div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 md:mb-16 gap-8" {...fadeInUp}>
               <div className="max-w-xl">
                 <span className="font-[--font-inter] text-sm tracking-[0.3em] text-[#f2ca50] uppercase block mb-4 text-balance">Project Archive</span>
                 <h2 className="font-[--font-noto-serif] text-3xl md:text-5xl font-bold text-white text-balance">Curation of Analytical Endeavors</h2>
@@ -358,9 +358,9 @@ export default function PortfolioPage() {
         </section>
 
         {/* --- TIMELINE SECTION --- */}
-        <section className="relative py-32 md:py-48 px-4 sm:px-6 md:px-10 bg-[#131313]" id="timeline">
+        <section className="relative py-20 md:py-24 px-4 sm:px-6 md:px-10 bg-[#131313]" id="timeline">
           <div className="relative z-10 w-full max-w-5xl mx-auto">
-            <motion.div className="text-center mb-16 md:mb-24" {...fadeInUp}>
+            <motion.div className="text-center mb-12 md:mb-16" {...fadeInUp}>
               <span className="font-[--font-inter] text-xs md:text-sm tracking-[0.3em] text-[#f2ca50] uppercase block mb-4">
                 Career Trajectory
               </span>
@@ -375,7 +375,7 @@ export default function PortfolioPage() {
               <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-white/10 transform md:-translate-x-1/2" />
 
               {/* Timeline Nodes mapping internship experiences */}
-              <div className="space-y-16 md:space-y-24">
+              <div className="space-y-12 md:space-y-16">
                 {[
                   {
                     role: 'Marketing Intern',
@@ -449,9 +449,9 @@ export default function PortfolioPage() {
         </section>
 
         {/* --- CERTIFICATIONS SECTION --- */}
-        <section className="py-32 md:py-48 px-4 md:px-10">
+        <section className="py-20 md:py-24 px-4 md:px-10">
           <div className="max-w-[1440px] mx-auto">
-            <motion.div className="text-center mb-16 md:mb-24" {...fadeInUp}>
+            <motion.div className="text-center mb-12 md:mb-16" {...fadeInUp}>
               <span className="font-[--font-inter] text-sm tracking-[0.3em] text-[#f2ca50] uppercase block mb-4">Recognition</span>
               <h2 className="font-[--font-noto-serif] text-3xl md:text-4xl font-bold text-white text-balance">Professional Certifications</h2>
             </motion.div>
@@ -493,8 +493,8 @@ export default function PortfolioPage() {
         </section>
 
         {/* --- CONNECT SECTION --- */}
-        <section className="py-32 md:py-48 px-4 md:px-10" id="connect">
-          <div className="max-w-[1440px] mx-auto grid lg:grid-cols-2 gap-12 md:gap-24 items-start">
+        <section className="py-20 md:py-24 px-4 md:px-10" id="connect">
+          <div className="max-w-[1440px] mx-auto grid lg:grid-cols-2 gap-8 md:gap-12 items-start">
             <motion.div className="space-y-12" {...fadeInUp}>
               <div>
                 <span className="font-[--font-inter] text-sm tracking-[0.3em] text-[#f2ca50] uppercase block mb-4">Get In Touch</span>
