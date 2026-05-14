@@ -1,7 +1,8 @@
 'use client';
 
+import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
-import { motion, HTMLMotionProps, Variants, useScroll, useTransform } from 'framer-motion';
+import { motion, AnimatePresence, HTMLMotionProps, Variants, useScroll, useTransform } from 'framer-motion';
 import { EtherealShadow } from '@/components/ui/etheral-shadow';
 import { VisitorCounter } from '@/components/ui/visitor-counter';
 import { GlassCard } from '@/components/ui/glass-card';
@@ -27,9 +28,63 @@ const staggerItem: Variants = {
   }
 };
 
+const words = ["INTO INSIGHTS", "INTO STRATEGY", "INTO VALUE", "INTO ACTION"];
+
+const DataWaveform = () => {
+  const bars = [
+    { x: 6, delay: 0 },
+    { x: 26, delay: 0.2 },
+    { x: 46, delay: 0.4 },
+    { x: 66, delay: 0.2 },
+    { x: 86, delay: 0 }
+  ];
+
+  return (
+    <svg
+      viewBox="0 0 100 40"
+      className="w-full max-w-[200px] h-12 md:h-16 overflow-visible drop-shadow-[0_0_12px_rgba(242,202,80,0.6)]"
+    >
+      {bars.map((bar, i) => (
+        <motion.rect
+          key={i}
+          x={bar.x}
+          y={5}
+          width={8}
+          height={30}
+          rx={4}
+          fill="#f2ca50"
+          style={{ originY: 0.5, originX: 0.5 }}
+          animate={{ scaleY: [0.3, 1, 0.3], opacity: [0.4, 1, 0.4] }}
+          transition={{
+            duration: 1.5,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: bar.delay
+          }}
+        />
+      ))}
+    </svg>
+  );
+};
+
 export default function PortfolioPage() {
   const { scrollY } = useScroll();
   const heroTextY = useTransform(scrollY, [0, 800], [0, -200]);
+
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start center", "end center"],
+  });
+
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex((prev) => (prev + 1) % words.length);
+    }, 2500);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <main className="bg-[#131313] text-[#e5e2e1] selection:bg-white selection:text-black overflow-x-hidden">
@@ -96,7 +151,7 @@ export default function PortfolioPage() {
           HERO SECTION
       ======================================== */}
       <section
-        className="relative h-screen flex flex-col justify-center items-center px-4 md:px-10 overflow-hidden"
+        className="min-h-screen flex flex-col items-center justify-center relative overflow-hidden px-4 md:px-10"
         id="vision"
       >
         <div className="absolute inset-0 z-0">
@@ -111,45 +166,42 @@ export default function PortfolioPage() {
           />
         </div>
         <motion.div 
-          className="relative z-10 text-center max-w-5xl mx-auto flex flex-col items-center"
+          className="flex flex-col items-center justify-center gap-6 md:gap-10 w-full z-10"
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.5, ease: [0.2, 0.8, 0.2, 1] }}
+          style={{ y: heroTextY }}
         >
-          <span className="font-[--font-inter] text-sm tracking-[0.5em] text-[#f2ca50] uppercase block mb-6">
-            Strategic Mindset • Analytical Precision
-          </span>
-          <motion.h1 
-            className="font-[--font-noto-serif] text-5xl sm:text-7xl md:text-8xl lg:text-[10rem] leading-none font-bold mb-8 tracking-tighter text-balance will-change-transform" 
-            style={{ y: heroTextY, textShadow: '0 0 40px rgba(255,255,255,0.15)' }}
-          >
-            <span className="text-white">SYED</span>{' '}<span className="text-gradient-gold">AMAAN</span>
-          </motion.h1>
-          <motion.p 
-            className="font-[--font-inter] text-base md:text-lg text-white/50 max-w-2xl mx-auto tracking-wide mb-12 uppercase leading-relaxed text-pretty"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.8, duration: 1 }}
-          >
-            PURSUING BBA <span className="mx-2 text-[#f2ca50]">|</span> DATA
-            ANALYSIS <span className="mx-2 text-[#f2ca50]">|</span>{' '}
-            ADMINISTRATIVE SUPPORT
-          </motion.p>
-          <motion.a 
-            className="inline-flex items-center group" 
-            href="#archive"
-            whileHover={{ y: 5 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <div className="w-16 h-16 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-[#f2ca50] transition-all duration-500 group-hover:scale-110">
-              <span className="material-symbols-outlined text-[#f2ca50] group-hover:text-black transition-colors">
-                arrow_downward
-              </span>
-            </div>
-            <span className="ml-4 font-[--font-inter] text-sm tracking-[0.2em] uppercase text-white/30 group-hover:text-[#f2ca50] transition-colors">
-              Discover More
+          {/* Top Row: Stroke + Solid Typography */}
+          <div className="flex flex-wrap items-center justify-center gap-4 md:gap-8 text-center">
+            <h1 className="font-[--font-noto-serif] font-serif text-[clamp(3rem,8vw,8rem)] leading-[0.8] uppercase tracking-tighter text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,0.4)] md:[-webkit-text-stroke:2px_rgba(255,255,255,0.4)] font-bold select-none">
+              TRANSFORM
+            </h1>
+            <span className="font-[--font-noto-serif] font-serif text-[clamp(3rem,8vw,8rem)] leading-[0.8] uppercase tracking-tighter text-white font-bold select-none">
+              DATA
             </span>
-          </motion.a>
+          </div>
+
+          {/* Middle Row: Animated Central Asset */}
+          <div className="w-full max-w-md h-16 md:h-24 flex items-center justify-center">
+            <DataWaveform />
+          </div>
+
+          {/* Bottom Row: Baseline for Animation */}
+          <div className="text-center drop-shadow-[0_0_15px_rgba(242,202,80,0.5)]">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={words[index]}
+                initial={{ opacity: 0, y: 40, filter: "blur(4px)" }}
+                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                exit={{ opacity: 0, y: -40, filter: "blur(4px)" }}
+                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                className="font-[--font-noto-serif] font-serif text-[clamp(3rem,8vw,8rem)] leading-[0.8] uppercase tracking-tighter text-[#f2ca50] font-bold select-none drop-shadow-[0_0_15px_rgba(242,202,80,0.5)]"
+              >
+                {words[index]}
+              </motion.div>
+            </AnimatePresence>
+          </div>
         </motion.div>
       </section>
 
@@ -245,13 +297,13 @@ export default function PortfolioPage() {
                 <h3 className="font-[--font-noto-serif] text-2xl text-white border-b border-white/10 pb-4">
                   Technical Proficiency
                 </h3>
-                <div className="flex flex-wrap gap-4">
+                <div className="flex flex-wrap gap-3 md:gap-4 mt-8">
                   {[
-                    'Data Visualization',
-                    'Power BI Dashboarding',
-                    'Advanced Excel Modeling',
+                    'Data Visualization (Power BI)',
+                    'Advanced Excel',
+                    'Python',
+                    'SQL',
                     'Tableau Analytics',
-                    'Python Data Science',
                     'Statistical Analysis',
                     'Strategic Management',
                     'CRM & Lead Generation',
@@ -262,7 +314,7 @@ export default function PortfolioPage() {
                       whileInView={{ opacity: 1, scale: 1 }}
                       transition={{ duration: 0.4, delay: sIdx * 0.08 }}
                       viewport={{ once: true }}
-                      className="px-6 py-3 rounded-full border border-white/10 bg-white/5 text-xs sm:text-sm font-mono uppercase tracking-widest text-white/70 transition-all duration-300 hover:border-[#f2ca50] hover:text-[#f2ca50] hover:bg-[#f2ca50]/5 cursor-default select-none"
+                      className="px-5 py-2.5 md:px-6 md:py-3 rounded-full border border-white/10 bg-white/5 text-xs md:text-sm font-mono uppercase tracking-widest text-white/70 transition-all duration-300 hover:border-[#f2ca50] hover:text-[#f2ca50] hover:bg-[#f2ca50]/5 cursor-default select-none"
                     >
                       {skill}
                     </motion.div>
@@ -358,7 +410,7 @@ export default function PortfolioPage() {
         </section>
 
         {/* --- TIMELINE SECTION --- */}
-        <section className="relative py-20 md:py-24 px-4 sm:px-6 md:px-10 bg-[#131313]" id="timeline">
+        <section ref={containerRef} className="relative py-20 md:py-24 px-4 sm:px-6 md:px-10 bg-[#131313]" id="timeline">
           <div className="relative z-10 w-full max-w-5xl mx-auto">
             <motion.div className="text-center mb-12 md:mb-16" {...fadeInUp}>
               <span className="font-[--font-inter] text-xs md:text-sm tracking-[0.3em] text-[#f2ca50] uppercase block mb-4">
@@ -371,8 +423,13 @@ export default function PortfolioPage() {
 
             {/* Premium Minimalist Vertical Timeline Container */}
             <div className="relative pt-4 pb-12">
-              {/* 1px Solid Vertical Structural Baseline */}
-              <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-white/10 transform md:-translate-x-1/2" />
+              {/* Scroll-Linked Glowing Data Stream Track */}
+              <div className="w-[2px] bg-white/5 absolute left-4 md:left-1/2 md:-translate-x-1/2 top-0 bottom-0">
+                <motion.div
+                  className="w-full h-full bg-gradient-to-b from-[#f2ca50] to-[#f2ca50]/10 shadow-[0_0_15px_rgba(242,202,80,0.6)]"
+                  style={{ scaleY: scrollYProgress, transformOrigin: "top" }}
+                />
+              </div>
 
               {/* Timeline Nodes mapping internship experiences */}
               <div className="space-y-12 md:space-y-16">
@@ -404,13 +461,20 @@ export default function PortfolioPage() {
                   <motion.div
                     key={role}
                     className="relative w-full group"
-                    initial={{ opacity: 0, x: side === 'left' ? -30 : 30 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ type: "spring", stiffness: 100, damping: 20, delay: index * 0.15 }}
-                    viewport={{ once: true, margin: "-50px" }}
+                    initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50, y: 20 }}
+                    whileInView={{ opacity: 1, x: 0, y: 0 }}
+                    transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
+                    viewport={{ once: true, margin: "-100px" }}
                   >
-                    {/* Glowing Dot resting on the vertical line */}
-                    <div className="absolute left-4 md:left-1/2 top-2 w-3 h-3 rounded-full bg-[#f2ca50] shadow-[0_0_10px_#f2ca50] transform -translate-x-1/2 z-20 transition-transform duration-500 group-hover:scale-125" />
+                    {/* Glowing Dot resting on the vertical line with power-on activation */}
+                    <div className="absolute left-4 md:left-1/2 top-2 transform -translate-x-1/2 z-20">
+                      <motion.div
+                        className="w-3 h-3 rounded-full bg-[#f2ca50] shadow-[0_0_10px_#f2ca50] transition-transform duration-500 group-hover:scale-125"
+                        initial={{ scale: 0, opacity: 0 }}
+                        whileInView={{ scale: 1, opacity: 1 }}
+                        transition={{ delay: 0.4, type: "spring", stiffness: 200, damping: 10 }}
+                      />
+                    </div>
 
                     {/* Content Box aligned alternatingly on Desktop */}
                     <div
@@ -470,22 +534,47 @@ export default function PortfolioPage() {
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: index * 0.15 }}
                 >
-                  <GlassCard className="p-8 md:p-8 group h-full flex flex-col items-center text-center max-w-[320px] sm:max-w-none w-full hover:border-white/20 transition-colors duration-500">
+                  {/* Directive 1: The Card Physics (Framer Motion) */}
+                  <motion.div
+                    className="h-full flex flex-col max-w-[320px] sm:max-w-none w-full relative group overflow-hidden border border-white/5 bg-white/[0.02] backdrop-blur-sm rounded-xl transition-colors duration-500 hover:border-[#f2ca50]/30"
+                    whileHover={{ y: -4, scale: 1.01 }}
+                  >
+                    {/* Directive 3: The Light Sweep */}
+                    <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-[#f2ca50]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+
                     <a 
                       href="https://www.linkedin.com/in/syed-amaan-san/details/certifications/" 
                       target="_blank" 
                       rel="noopener noreferrer" 
-                      className="block w-full h-full flex flex-col items-center"
+                      className="flex flex-col w-full h-full text-left relative z-10"
                     >
-                      <div className="w-full h-32 mb-6 flex items-center justify-center transition-all duration-500 group-hover:scale-110">
-                        <img src={image} alt={name} className="object-contain w-full h-full drop-shadow-xl" />
+                      {/* Uniform Logo Stage */}
+                      <div className="relative w-full h-32 md:h-40 bg-white/5 rounded-t-xl flex items-center justify-center p-6 md:p-8">
+                        {/* Directive 2: The Monochromatic Filter */}
+                        <img 
+                          src={image} 
+                          alt={name} 
+                          className="w-full h-full object-contain object-center drop-shadow-xl transition-all duration-500 grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105" 
+                        />
                       </div>
-                      <h4 className="font-[--font-noto-serif] text-white font-bold mb-1 text-base leading-snug">{name}</h4>
-                      <p className="font-[--font-inter] text-sm text-[#f2ca50] uppercase tracking-tighter mb-2 font-semibold">{cert}</p>
-                      <p className="font-[--font-inter] text-xs text-white/50 tracking-wider mb-3">{issuer}</p>
-                      <p className="font-[--font-inter] text-xs text-white/40 leading-relaxed mt-auto">{skills}</p>
+
+                      {/* Typography & Spacing Overhaul */}
+                      <div className="p-6 md:p-8 flex flex-col gap-3 flex-1">
+                        <h4 className="font-[--font-noto-serif] font-serif text-lg md:text-xl text-white leading-tight font-bold">{cert}</h4>
+                        <p className="font-[--font-inter] font-sans text-sm font-semibold tracking-widest text-[#f2ca50] uppercase">{name}</p>
+                        <p className="font-mono text-xs text-white/50">{issuer}</p>
+
+                        {/* Footer Tags */}
+                        <div className="mt-auto pt-4 flex flex-wrap gap-2 border-t border-white/5">
+                          {skills.split(' · ').map((skillTag, tIdx) => (
+                            <span key={tIdx} className="text-[10px] md:text-xs font-mono uppercase tracking-wider text-white/40 bg-white/5 px-2.5 py-1 rounded border border-white/5">
+                              {skillTag}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
                     </a>
-                  </GlassCard>
+                  </motion.div>
                 </motion.div>
               ))}
             </div>
