@@ -57,6 +57,8 @@ export const metadata: Metadata = {
   },
 };
 
+import { GoogleAnalytics } from '@next/third-parties/google';
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -65,6 +67,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${notoSerif.variable} ${inter.variable}`} suppressHydrationWarning>
       <head>
+        <script src="https://app.secureprivacy.ai/script/6a19ab3e94213aae6765a1aa.js" />
         <link
           rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
@@ -73,6 +76,9 @@ export default function RootLayout({
       <body className="min-h-screen bg-[#131313] text-[#e5e2e1] overflow-x-hidden antialiased" suppressHydrationWarning>
         <ScrollProgress />
         {children}
+        {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && (
+          <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID} />
+        )}
       </body>
     </html>
   );

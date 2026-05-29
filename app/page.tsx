@@ -4,7 +4,6 @@ import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence, HTMLMotionProps, Variants, useScroll, useTransform } from 'framer-motion';
 import { EtherealShadow } from '@/components/ui/etheral-shadow';
-import { VisitorCounter } from '@/components/ui/visitor-counter';
 import { GlassCard } from '@/components/ui/glass-card';
 
 const fadeInUp: HTMLMotionProps<"div"> = {
@@ -99,14 +98,23 @@ export default function PortfolioPage() {
       >
         <div className="flex justify-between items-center max-w-[1440px] mx-auto px-4 md:px-10 py-4 md:py-6 relative">
           <motion.a
-            className="font-[--font-noto-serif] font-bold text-xl md:text-2xl tracking-tighter text-[#f2ca50] hover:scale-105 transition-all duration-300 flex-shrink-0 whitespace-nowrap group relative z-10"
+            className="flex items-center gap-3 font-[--font-noto-serif] font-bold text-xl md:text-2xl tracking-tighter text-[#f2ca50] hover:scale-105 transition-all duration-300 flex-shrink-0 whitespace-nowrap group relative z-10"
             href="#"
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            SYED AMAAN
-            <span className="block h-[1px] w-0 bg-[#f2ca50] transition-all group-hover:w-full" />
+            <Image 
+              src="/LOGO FOR NAVBAR.png" 
+              alt="Syed Amaan Logo" 
+              width={48}
+              height={48}
+              className="object-contain w-10 h-10 md:w-12 md:h-12 rounded-full"
+            />
+            <div className="flex flex-col">
+              <span>SYED AMAAN</span>
+              <span className="block h-[1px] w-0 bg-[#f2ca50] transition-all duration-300 group-hover:w-full" />
+            </div>
           </motion.a>
           
           <motion.div 
@@ -583,8 +591,10 @@ export default function PortfolioPage() {
 
         {/* --- CONNECT SECTION --- */}
         <section className="py-20 md:py-24 px-4 md:px-10" id="connect">
-          <div className="max-w-[1440px] mx-auto grid lg:grid-cols-2 gap-8 md:gap-12 items-start">
-            <motion.div className="space-y-12" {...fadeInUp}>
+          <div className="max-w-[1440px] mx-auto flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-8">
+            
+            {/* Left side: Contact Info */}
+            <motion.div className="space-y-12 w-full lg:w-[35%]" {...fadeInUp}>
               <div>
                 <span className="font-[--font-inter] text-sm tracking-[0.3em] text-[#f2ca50] uppercase block mb-4">Get In Touch</span>
                 <h2 className="font-[--font-noto-serif] text-3xl md:text-5xl font-bold text-white leading-tight text-balance">Let&apos;s Orchestrate <br />Future Insights.</h2>
@@ -601,33 +611,60 @@ export default function PortfolioPage() {
                   <span className="group-hover:text-white transition-colors font-medium break-all md:break-words">syedamaansan24@gmail.com</span>
                 </motion.a>
                 <div className="flex items-center gap-6 group">
-                  <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center">
+                  <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center flex-shrink-0">
                     <span className="material-symbols-outlined text-[#f2ca50]">location_on</span>
                   </div>
                   <span className="font-medium">Patna, Bihar</span>
                 </div>
               </div>
             </motion.div>
-            <motion.div className="glass-card p-8 md:p-12 rounded-xl" {...fadeInUp}>
-              <div className="space-y-10">
+
+            {/* Center: Large Logo */}
+            <motion.div className="w-full lg:w-[30%] flex justify-center py-8 lg:py-0" {...fadeInUp}>
+              <div className="relative w-64 h-64 md:w-80 md:h-80 opacity-90 transition-transform duration-700 hover:scale-105">
+                <Image
+                  src="/LOGO FOR NAVBAR.png"
+                  alt="Syed Amaan Emblem"
+                  fill
+                  className="object-contain drop-shadow-[0_0_40px_rgba(242,202,80,0.15)]"
+                />
+              </div>
+            </motion.div>
+
+            {/* Right side: Button Component */}
+            <motion.div className="w-full lg:w-[35%] flex lg:justify-end justify-center" {...fadeInUp}>
+              <div className="glass-card p-6 md:p-8 rounded-xl w-full max-w-[280px] flex flex-col justify-center items-center">
+                <p className="font-[--font-inter] text-xs text-white/50 uppercase tracking-widest mb-6 text-center">
+                  Start a Conversation
+                </p>
                 <a 
                   href="https://docs.google.com/forms/d/e/1FAIpQLSc4gYl7oTWiN-Wdowt550TJnL4q7gwTI4x-KawzfhPS3hZtlw/viewform" 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  className="w-full inline-block text-center bg-[#f2ca50] text-black py-5 rounded-md font-[--font-inter] text-sm tracking-[0.3em] uppercase hover:scale-[1.02] hover:shadow-[0_0_20px_rgba(242,202,80,0.4)] transition-all duration-300"
+                  className="w-full inline-block text-center bg-[#f2ca50] text-black py-4 rounded-md font-[--font-inter] text-xs font-bold tracking-[0.2em] uppercase hover:scale-[1.05] hover:shadow-[0_0_20px_rgba(242,202,80,0.4)] transition-all duration-300"
                 >
                   Send a Message
                 </a>
               </div>
             </motion.div>
+
           </div>
         </section>
       </div>
 
       <footer className="bg-[#0e0e0e] py-12 md:py-8 border-t border-white/5">
         <div className="flex flex-col md:flex-row justify-between items-center md:items-start px-4 md:px-16 w-full max-w-[1440px] mx-auto gap-8 md:gap-6">
-          <div className="text-[#f2ca50] font-black font-[--font-noto-serif] text-lg tracking-tighter uppercase leading-tight">
-            SYED<br />AMAAN
+          <div className="flex items-center gap-4">
+            <Image 
+              src="/LOGO FOR NAVBAR.png" 
+              alt="Syed Amaan Logo" 
+              width={56}
+              height={56}
+              className="object-contain w-12 h-12 md:w-14 md:h-14 rounded-full"
+            />
+            <div className="text-[#f2ca50] font-black font-[--font-noto-serif] text-lg tracking-tighter uppercase leading-tight text-left">
+              SYED<br />AMAAN
+            </div>
           </div>
           <div className="text-center md:text-left flex-1">
             <p className="font-[--font-inter] text-[0.6rem] md:text-[0.7rem] tracking-[0.15em] uppercase text-white/30 mb-1 text-pretty">© 2026 SYED AMAAN. DATA ANALYST.</p>
@@ -640,7 +677,6 @@ export default function PortfolioPage() {
         </div>
         <div className="mt-8 text-center">
           <p className="font-[--font-noto-serif] text-lg text-white/10 tracking-[0.4em] uppercase">Thank you for visiting!</p>
-          <VisitorCounter />
         </div>
       </footer>
     </main>
