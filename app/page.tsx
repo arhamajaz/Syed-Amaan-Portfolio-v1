@@ -86,7 +86,7 @@ export default function PortfolioPage() {
   }, []);
 
   return (
-    <main className="bg-[#131313] text-[#e5e2e1] selection:bg-white selection:text-black overflow-x-hidden">
+    <main className="relative bg-[#131313] text-[#e5e2e1] selection:bg-white selection:text-black overflow-x-hidden">
       {/* ========================================
           TOP NAVIGATION BAR
       ======================================== */}
@@ -414,6 +414,17 @@ export default function PortfolioPage() {
                 </motion.div>
               ))}
             </div>
+            <motion.div className="mt-12 md:mt-16 flex justify-center" {...fadeInUp}>
+              <a 
+                href="https://www.linkedin.com/in/syed-amaan-san/details/projects/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-transparent border border-white/20 text-white hover:bg-[#f2ca50] hover:text-black hover:border-[#f2ca50] px-8 py-3 rounded-full font-[--font-inter] text-xs md:text-sm font-bold tracking-[0.2em] uppercase hover:scale-[1.05] hover:shadow-[0_0_20px_rgba(242,202,80,0.4)] transition-all duration-300 group"
+              >
+                See more
+                <span className="material-symbols-outlined text-sm md:text-base group-hover:translate-x-1 transition-transform duration-300">arrow_forward</span>
+              </a>
+            </motion.div>
           </div>
         </section>
 
@@ -627,6 +638,7 @@ export default function PortfolioPage() {
                   alt="Syed Amaan Emblem"
                   fill
                   className="object-contain drop-shadow-[0_0_40px_rgba(242,202,80,0.15)]"
+                  sizes="(max-width: 768px) 256px, 320px"
                 />
               </div>
             </motion.div>
