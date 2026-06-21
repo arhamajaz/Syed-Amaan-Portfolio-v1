@@ -375,10 +375,10 @@ export default function PortfolioPage() {
             </motion.div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {[
-                { src: '/consumer-preferences.png', tag: 'Power BI Dashboard', title: 'Consumer Preferences between Online Food Delivery and Restaurant Dining', desc: 'A comprehensive Power BI dashboard analyzing consumer preferences, comparing online food delivery habits with traditional restaurant dining patterns.' },
-                { src: '/influence-behavior.png', tag: 'Power BI Dashboard • Patna', title: 'Influence of Social Media on Pre-Purchase Clothing Behavior of Young Adults', desc: 'Mapping the digital footprint of young adults in Patna — how social media shapes clothing purchase decisions from awareness to conversion.' },
-                { src: '/image.png', tag: 'Excel • Sep 2025', title: 'Sales Analysis of Coca-Cola', desc: 'Interactive sales dashboard in Excel analyzing revenue by region, product & city with KPIs, trend lines, and comparative charts. Associated with St. Xavier\'s College of Management & Technology.' },
-              ].map(({ src, tag, title, desc }, index) => (
+                { src: '/consumer-preferences.png', tag: 'Power BI Dashboard', title: 'Consumer Preferences between Online Food Delivery and Restaurant Dining', desc: 'A comprehensive Power BI dashboard analyzing consumer preferences, comparing online food delivery habits with traditional restaurant dining patterns.', link: 'https://drive.google.com/drive/folders/1BHtfZ6V1feAgCybxAF4R6-YDmdb_2g6_' },
+                { src: '/influence-behavior.png', tag: 'Power BI Dashboard • Patna', title: 'Influence of Social Media on Pre-Purchase Clothing Behavior of Young Adults', desc: 'Mapping the digital footprint of young adults in Patna — how social media shapes clothing purchase decisions from awareness to conversion.', link: 'https://drive.google.com/drive/folders/1BHtfZ6V1feAgCybxAF4R6-YDmdb_2g6_' },
+                { src: '/image.png', tag: 'Excel • Sep 2025', title: 'Sales Analysis of Coca-Cola', desc: 'Interactive sales dashboard in Excel analyzing revenue by region, product & city with KPIs, trend lines, and comparative charts. Associated with St. Xavier\'s College of Management & Technology.', link: 'https://drive.google.com/drive/folders/1BHtfZ6V1feAgCybxAF4R6-YDmdb_2g6_' },
+              ].map(({ src, tag, title, desc, link }, index) => (
                 <motion.div 
                   key={title}
                   initial={{ opacity: 0, y: 40 }}
@@ -388,7 +388,7 @@ export default function PortfolioPage() {
                 >
                   <GlassCard glowColor="#f2ca50" className="group relative aspect-[3/4] max-h-[520px] cursor-pointer hover:border-[#f2ca50]/30 transition-colors duration-500">
                     <a 
-                      href="https://www.linkedin.com/in/syed-amaan-san/details/projects/" 
+                      href={link} 
                       target="_blank" 
                       rel="noopener noreferrer" 
                       className="relative block w-full h-full overflow-hidden"
